@@ -305,6 +305,8 @@ ul { list-style: none; }
   transition: transform .35s;
 }
 .speaker-card:hover .speaker-photo img { transform: translateY(-5px); }
+.speaker-photo.no-shape::before, .sp-modal-photo.no-shape::before { display: none; }
+.speaker-photo.no-shape img, .sp-modal-photo.no-shape img { object-fit: cover; object-position: center; border-radius: 4px; }
 .speaker-photo .ph-fallback {
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
   font-family: var(--display); font-stretch: 122%; font-weight: 900;

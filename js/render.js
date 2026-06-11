@@ -129,7 +129,7 @@
   function speakerCard(s) {
     var p = s[L] || s.kor;
     return '<article class="speaker-card" data-name="' + esc(s.kor.name) + '" role="button" tabindex="0">' +
-      '<div class="speaker-photo"><img src="' + esc(asset(s.img)) + '" alt="' + esc(p.name) + '" loading="lazy"></div>' +
+      '<div class="speaker-photo' + (s.noshape ? ' no-shape' : '') + '"><img src="' + esc(asset(s.img)) + '" alt="' + esc(p.name) + '" loading="lazy"></div>' +
       '<div class="speaker-info"><h3>' + esc(p.name) + '</h3><p>' + esc(p.title) + '</p></div>' +
       '</article>';
   }
@@ -154,7 +154,7 @@
       '<div class="sp-modal" role="dialog" aria-modal="true" aria-label="' + esc(p.name) + '">' +
         '<button class="sp-modal-close" type="button" aria-label="닫기">×</button>' +
         '<div class="sp-modal-body">' +
-          '<div class="sp-modal-photo"><img src="' + esc(asset(s.img)) + '" alt="' + esc(p.name) + '"></div>' +
+          '<div class="sp-modal-photo' + (s.noshape ? ' no-shape' : '') + '"><img src="' + esc(asset(s.img)) + '" alt="' + esc(p.name) + '"></div>' +
           '<div class="sp-modal-text">' +
             '<div class="sp-modal-label">' + (isEn ? 'Speaker' : '연사 소개') + '</div>' +
             '<h3>' + esc(p.name) + '</h3>' +
