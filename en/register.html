@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration | WCIF 2026 World Cultural Industry Forum</title>
+<meta name="description" content="2026 WCIF registration">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900&family=Noto+Sans+KR:wght@300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">WCIF <span>2026</span></a>
+    <nav class="main-nav"></nav>
+    <div class="header-right">
+      <div class="lang-switch"><a href="../register.html">KOR</a> / <b>ENG</b></div>
+      <a href="mailto:cforum3138@naver.com" class="btn-cta">Contact Us</a>
+      <button class="nav-toggle" aria-label="Open menu"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="crumb">Home / Registration</div>
+    <h1>Registration<span class="en">2026 WCIF Registration</span></h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container reveal">
+    <div class="section-label">Registration</div>
+    <h2 class="section-title">Attendee Information</h2>
+    <p class="section-desc">Please fill in the form below. All fields are required. Your phone number is encrypted before storage.</p>
+
+    <form class="reg-form" id="regForm" novalidate>
+      <div class="reg-field">
+        <label for="rName">Name *</label>
+        <input type="text" id="rName" name="name" required autocomplete="name" placeholder="Full name">
+      </div>
+      <div class="reg-field">
+        <label for="rPhone">Mobile Phone *</label>
+        <input type="tel" id="rPhone" name="phone" required autocomplete="tel" placeholder="+82 10-1234-5678" inputmode="tel">
+        <small class="reg-hint">Encrypted at submission and used only for event communication.</small>
+      </div>
+      <div class="reg-field">
+        <label for="rAff">Affiliation *</label>
+        <input type="text" id="rAff" name="affiliation" required autocomplete="organization" placeholder="Company / Organization">
+      </div>
+      <div class="reg-field">
+        <label for="rTitle">Job Title *</label>
+        <input type="text" id="rTitle" name="job_title" required autocomplete="organization-title" placeholder="Job title">
+      </div>
+      <div class="reg-consent">
+        <label>
+          <input type="checkbox" id="rConsent" required>
+          <span>I agree to the collection and use of my personal information (name, phone, affiliation, job title) for event registration and communication. Data is retained for 3 months after the event.</span>
+        </label>
+      </div>
+      <div class="reg-actions">
+        <button type="submit" class="btn-primary" id="regSubmit" style="border:0;cursor:pointer;font-family:var(--display)">Register</button>
+      </div>
+      <p class="reg-msg" id="regMsg"></p>
+    </form>
+
+    <div class="reg-done" id="regDone" style="display:none">
+      <div class="coming-wrap">
+        <div class="big">Thank <span>You</span></div>
+        <p>Your registration is complete.<br>Event details will be sent to the contact you provided.</p>
+        <div class="hero-actions" style="justify-content:center">
+          <a href="index.html" class="btn-primary">Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">WCIF <span>2026</span></div>
+        <address>
+          381, Gangnam-daero 1111, Seocho-gu, Seoul 06620, Korea<br>
+          Tel +82 2) 738-3582 · Fax +82 2) 2057-8874<br>
+          Email <a href="mailto:cforum3138@naver.com">cforum3138@naver.com</a>
+        </address>
+      </div>
+      <div>
+        <ul style="line-height:2.1"><li><a href="about.html">About</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>Copyright ⓒ World Cultural Industry Forum. All rights reserved.</div>
+      <div>WCIF</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/content.js"></script>
+<script src="../js/render.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/reg-config.js"></script>
+<script>
+(function(){
+  var form = document.getElementById('regForm');
+  var msg = document.getElementById('regMsg');
+  var cfg = window.WCIF_REG || {};
+
+  function showMsg(t, ok){ msg.textContent = t; msg.style.color = ok ? '#1a7f37' : '#c00'; }
+
+  async function encryptPhone(phone){
+    var der = Uint8Array.from(atob(cfg.PUBLIC_KEY), function(c){ return c.charCodeAt(0); });
+    var key = await crypto.subtle.importKey('spki', der, { name:'RSA-OAEP', hash:'SHA-256' }, false, ['encrypt']);
+    var enc = await crypto.subtle.encrypt({ name:'RSA-OAEP' }, key, new TextEncoder().encode(phone));
+    var b = ''; new Uint8Array(enc).forEach(function(x){ b += String.fromCharCode(x); });
+    return btoa(b);
+  }
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    var name = document.getElementById('rName').value.trim();
+    var phone = document.getElementById('rPhone').value.trim();
+    var aff = document.getElementById('rAff').value.trim();
+    var title = document.getElementById('rTitle').value.trim();
+    var consent = document.getElementById('rConsent').checked;
+
+    if (!name || !phone || !aff || !title) { showMsg('Please fill in all required fields.'); return; }
+    if (!/^[0-9+\-\s()]{9,16}$/.test(phone)) { showMsg('Please check your phone number format.'); return; }
+    if (!consent) { showMsg('Please agree to the privacy policy.'); return; }
+    if (!cfg.SUPABASE_URL || !cfg.SUPABASE_ANON_KEY) { showMsg('Registration system is being prepared. Please try again later.'); return; }
+
+    var btn = document.getElementById('regSubmit');
+    btn.disabled = true; btn.textContent = 'Submitting...';
+    try {
+      var phoneEnc = await encryptPhone(phone);
+      var res = await fetch(cfg.SUPABASE_URL + '/rest/v1/registrations', {
+        method: 'POST',
+        headers: {
+          'apikey': cfg.SUPABASE_ANON_KEY,
+          'Authorization': 'Bearer ' + cfg.SUPABASE_ANON_KEY,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ name: name, phone_enc: phoneEnc, affiliation: aff, job_title: title, lang: 'eng' })
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      form.style.display = 'none';
+      document.getElementById('regDone').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      showMsg('An error occurred. Please try again later.');
+      btn.disabled = false; btn.textContent = 'Register';
+    }
+  });
+})();
+</script>
+</body>
+</html>

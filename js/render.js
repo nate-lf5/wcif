@@ -123,11 +123,69 @@
   /* ---------- 3. 연사 ---------- */
   function speakerCard(s) {
     var p = s[L] || s.kor;
-    return '<article class="speaker-card">' +
+    return '<article class="speaker-card" data-name="' + esc(s.kor.name) + '" role="button" tabindex="0">' +
       '<div class="speaker-photo"><img src="' + esc(s.img) + '" alt="' + esc(p.name) + '" loading="lazy"></div>' +
       '<div class="speaker-info"><h3>' + esc(p.name) + '</h3><p>' + esc(p.title) + '</p></div>' +
       '</article>';
   }
+
+  // 연사 소개 팝업
+  function openSpeakerModal(s) {
+    var p = s[L] || s.kor;
+    var bio = (C.bios && C.bios[s.kor.name]) || null;
+    var bioText = bio ? (isEn ? bio.eng : bio.kor) : p.title;
+    var links = (bio && bio.links) || [];
+    var linksHtml = '';
+    if (links.length) {
+      linksHtml = '<div class="sp-modal-links"><div class="sp-modal-links-label">' +
+        (isEn ? 'Related Articles' : '관련 기사 및 링크') + '</div>' +
+        links.map(function (l) {
+          return '<a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.title) + ' ↗</a>';
+        }).join('') + '</div>';
+    }
+    var overlay = document.createElement('div');
+    overlay.className = 'sp-modal-overlay';
+    overlay.innerHTML =
+      '<div class="sp-modal" role="dialog" aria-modal="true" aria-label="' + esc(p.name) + '">' +
+        '<button class="sp-modal-close" type="button" aria-label="닫기">×</button>' +
+        '<div class="sp-modal-body">' +
+          '<div class="sp-modal-photo"><img src="' + esc(s.img) + '" alt="' + esc(p.name) + '"></div>' +
+          '<div class="sp-modal-text">' +
+            '<div class="sp-modal-label">' + (isEn ? 'Speaker' : '연사 소개') + '</div>' +
+            '<h3>' + esc(p.name) + '</h3>' +
+            '<p class="sp-modal-title">' + esc(p.title) + '</p>' +
+            '<p class="sp-modal-bio">' + esc(bioText) + '</p>' +
+            linksHtml +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(overlay);
+    document.body.style.overflow = 'hidden';
+    function close() {
+      overlay.remove();
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', onKey);
+    }
+    function onKey(e) { if (e.key === 'Escape') close(); }
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+    overlay.querySelector('.sp-modal-close').addEventListener('click', close);
+    document.addEventListener('keydown', onKey);
+  }
+
+  function bindSpeakerClicks(rootEl) {
+    if (!rootEl) return;
+    rootEl.querySelectorAll('.speaker-card[data-name]').forEach(function (card) {
+      var name = card.getAttribute('data-name');
+      var s = null;
+      C.speakers.forEach(function (x) { if (x.kor.name === name) s = x; });
+      if (!s) return;
+      card.addEventListener('click', function () { openSpeakerModal(s); });
+      card.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSpeakerModal(s); }
+      });
+    });
+  }
+
   var spFull = document.getElementById('speakers-root');
   if (spFull && C.speakers) {
     var full = C.speakers.map(speakerCard).join('');
@@ -137,12 +195,14 @@
       (isEn ? 'More speakers to be announced' : '추가 연사가 공개될 예정입니다') +
       '</p></div></article>';
     spFull.innerHTML = full;
+    bindSpeakerClicks(spFull);
   }
   var spFeat = document.getElementById('speakers-featured');
   if (spFeat && C.speakers) {
     var feat = C.speakers.filter(function (s) { return s.featured; });
     if (feat.length === 0) feat = C.speakers.slice(0, 6);
     spFeat.innerHTML = feat.slice(0, 6).map(speakerCard).join('');
+    bindSpeakerClicks(spFeat);
   }
 
   /* ---------- 4. 아카이빙 (역대 행사) ---------- */

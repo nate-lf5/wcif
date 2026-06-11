@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사전등록 | WCIF 2026 세계문화산업포럼</title>
+<meta name="description" content="2026 WCIF 세계문화산업포럼 참가자 사전등록">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900&family=Noto+Sans+KR:wght@300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">WCIF <span>2026</span></a>
+    <nav class="main-nav"></nav>
+    <div class="header-right">
+      <div class="lang-switch"><b>KOR</b> / <a href="en/register.html">ENG</a></div>
+      <a href="mailto:cforum3138@naver.com" class="btn-cta">참가 문의</a>
+      <button class="nav-toggle" aria-label="메뉴 열기"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="crumb">Home / Registration</div>
+    <h1>사전등록<span class="en">2026 WCIF Registration</span></h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container reveal">
+    <div class="section-label">Registration</div>
+    <h2 class="section-title">참가자 정보 입력</h2>
+    <p class="section-desc">아래 정보를 입력해주세요. 모든 항목은 필수입니다. 휴대전화 번호는 암호화되어 안전하게 저장됩니다.</p>
+
+    <form class="reg-form" id="regForm" novalidate>
+      <div class="reg-field">
+        <label for="rName">이름 *</label>
+        <input type="text" id="rName" name="name" required autocomplete="name" placeholder="홍길동">
+      </div>
+      <div class="reg-field">
+        <label for="rPhone">휴대전화 번호 *</label>
+        <input type="tel" id="rPhone" name="phone" required autocomplete="tel" placeholder="010-1234-5678" inputmode="tel">
+        <small class="reg-hint">암호화되어 저장되며 행사 안내 목적으로만 사용됩니다.</small>
+      </div>
+      <div class="reg-field">
+        <label for="rAff">소속 *</label>
+        <input type="text" id="rAff" name="affiliation" required autocomplete="organization" placeholder="회사/기관명">
+      </div>
+      <div class="reg-field">
+        <label for="rTitle">직책 *</label>
+        <input type="text" id="rTitle" name="job_title" required autocomplete="organization-title" placeholder="직책">
+      </div>
+      <div class="reg-consent">
+        <label>
+          <input type="checkbox" id="rConsent" required>
+          <span>개인정보 수집 및 이용에 동의합니다. (수집 항목: 이름, 휴대전화, 소속, 직책 / 이용 목적: 행사 등록 및 안내 / 보유 기간: 행사 종료 후 3개월)</span>
+        </label>
+      </div>
+      <div class="reg-actions">
+        <button type="submit" class="btn-primary" id="regSubmit" style="border:0;cursor:pointer;font-family:var(--display)">등록하기</button>
+      </div>
+      <p class="reg-msg" id="regMsg"></p>
+    </form>
+
+    <div class="reg-done" id="regDone" style="display:none">
+      <div class="coming-wrap">
+        <div class="big">Thank <span>You</span></div>
+        <p>사전등록이 완료되었습니다.<br>행사 관련 안내는 입력하신 연락처로 전달됩니다.</p>
+        <div class="hero-actions" style="justify-content:center">
+          <a href="index.html" class="btn-primary">메인으로 돌아가기</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">WCIF <span>2026</span></div>
+        <address>
+          (06620) 서울특별시 서초구 강남대로 381, 1111<br>
+          전화 02) 738-3582 · 팩스 02) 2057-8874<br>
+          이메일 <a href="mailto:cforum3138@naver.com">cforum3138@naver.com</a>
+        </address>
+      </div>
+      <div>
+        <ul style="line-height:2.1"><li><a href="about.html">소개</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>Copyright ⓒ 세계문화산업포럼 All rights reserved.</div>
+      <div>World Cultural Industry Forum</div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/content.js"></script>
+<script src="js/render.js"></script>
+<script src="js/main.js"></script>
+<script src="js/reg-config.js"></script>
+<script>
+(function(){
+  var form = document.getElementById('regForm');
+  var msg = document.getElementById('regMsg');
+  var cfg = window.WCIF_REG || {};
+
+  function showMsg(t, ok){ msg.textContent = t; msg.style.color = ok ? '#1a7f37' : '#c00'; }
+
+  async function encryptPhone(phone){
+    var der = Uint8Array.from(atob(cfg.PUBLIC_KEY), function(c){ return c.charCodeAt(0); });
+    var key = await crypto.subtle.importKey('spki', der, { name:'RSA-OAEP', hash:'SHA-256' }, false, ['encrypt']);
+    var enc = await crypto.subtle.encrypt({ name:'RSA-OAEP' }, key, new TextEncoder().encode(phone));
+    var b = ''; new Uint8Array(enc).forEach(function(x){ b += String.fromCharCode(x); });
+    return btoa(b);
+  }
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    var name = document.getElementById('rName').value.trim();
+    var phone = document.getElementById('rPhone').value.trim();
+    var aff = document.getElementById('rAff').value.trim();
+    var title = document.getElementById('rTitle').value.trim();
+    var consent = document.getElementById('rConsent').checked;
+
+    if (!name || !phone || !aff || !title) { showMsg('모든 필수 항목을 입력해주세요.'); return; }
+    if (!/^[0-9+\-\s()]{9,16}$/.test(phone)) { showMsg('휴대전화 번호 형식을 확인해주세요. (예: 010-1234-5678)'); return; }
+    if (!consent) { showMsg('개인정보 수집 및 이용에 동의해주세요.'); return; }
+    if (!cfg.SUPABASE_URL || !cfg.SUPABASE_ANON_KEY) { showMsg('등록 시스템 준비 중입니다. 잠시 후 다시 시도해주세요.'); return; }
+
+    var btn = document.getElementById('regSubmit');
+    btn.disabled = true; btn.textContent = '등록 중...';
+    try {
+      var phoneEnc = await encryptPhone(phone);
+      var res = await fetch(cfg.SUPABASE_URL + '/rest/v1/registrations', {
+        method: 'POST',
+        headers: {
+          'apikey': cfg.SUPABASE_ANON_KEY,
+          'Authorization': 'Bearer ' + cfg.SUPABASE_ANON_KEY,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ name: name, phone_enc: phoneEnc, affiliation: aff, job_title: title, lang: 'kor' })
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      form.style.display = 'none';
+      document.getElementById('regDone').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      showMsg('등록 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+      btn.disabled = false; btn.textContent = '등록하기';
+    }
+  });
+})();
+</script>
+</body>
+</html>

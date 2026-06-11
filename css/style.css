@@ -72,10 +72,13 @@ ul { list-style: none; }
 /* dropdown */
 .nav-item { position: relative; display: flex; align-items: center; height: 64px; }
 .nav-item .sub {
-  position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(6px);
+  position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
   min-width: 180px; background: var(--paper); border: 1px solid var(--ink);
   padding: .5rem 0; display: none; z-index: 110;
   box-shadow: 0 14px 30px rgba(0,0,0,.12);
+}
+.nav-item .sub::before {
+  content: ''; position: absolute; left: 0; right: 0; top: -12px; height: 12px;
 }
 .nav-item:hover .sub, .nav-item:focus-within .sub { display: block; }
 .nav-item .sub a {
@@ -655,6 +658,84 @@ body.has-float .scroll-cue { bottom: 92px; }
   transition: all .2s;
 }
 .btn-dl-asset:hover { background: var(--ink); color: var(--paper); }
+
+/* ---------- Speaker modal ---------- */
+.speaker-card[data-name] { cursor: pointer; }
+.sp-modal-overlay {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(17,16,20,.62);
+  display: flex; align-items: center; justify-content: center;
+  padding: 5vh 4%;
+  animation: spFade .2s ease;
+}
+@keyframes spFade { from { opacity: 0; } to { opacity: 1; } }
+.sp-modal {
+  background: var(--paper); max-width: 760px; width: 100%;
+  max-height: 88vh; overflow-y: auto; position: relative;
+  border: 1px solid var(--ink);
+  animation: spUp .25s ease;
+}
+@keyframes spUp { from { transform: translateY(18px); opacity: 0; } to { transform: none; opacity: 1; } }
+.sp-modal-close {
+  position: sticky; top: 0; float: right; margin: .8rem .8rem 0 0;
+  width: 40px; height: 40px; border: 1px solid var(--ink); background: var(--paper);
+  font-size: 1.4rem; line-height: 1; cursor: pointer; z-index: 2;
+  transition: all .2s;
+}
+.sp-modal-close:hover { background: var(--ink); color: var(--paper); }
+.sp-modal-body {
+  display: grid; grid-template-columns: 220px 1fr; gap: 2rem;
+  padding: 2.4rem;
+}
+.sp-modal-photo {
+  width: 200px; aspect-ratio: 1/1; border-radius: 50%; overflow: hidden;
+  background: var(--paper-warm); padding: 4%;
+}
+.sp-modal-photo img { width: 100%; height: 100%; object-fit: contain; }
+.sp-modal-label {
+  font-family: var(--display); font-stretch: 115%; font-weight: 800;
+  font-size: .75rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: .8rem;
+}
+.sp-modal-text h3 { font-size: 1.6rem; font-weight: 800; letter-spacing: -.01em; }
+.sp-modal-title { color: var(--ink-soft); font-weight: 600; margin-top: .2rem; font-size: .95rem; }
+.sp-modal-bio { margin-top: 1.2rem; line-height: 1.8; word-break: keep-all; font-size: .98rem; }
+.sp-modal-links { margin-top: 1.6rem; border-top: 1px solid var(--line); padding-top: 1.2rem; }
+.sp-modal-links-label {
+  font-family: var(--display); font-stretch: 112%; font-weight: 800;
+  font-size: .72rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--ink-soft); margin-bottom: .6rem;
+}
+.sp-modal-links a {
+  display: block; padding: .45rem 0; font-size: .88rem; font-weight: 600;
+  color: var(--ink); border-bottom: 1px dashed var(--line);
+}
+.sp-modal-links a:hover { color: var(--accent); }
+@media (max-width: 640px) {
+  .sp-modal-body { grid-template-columns: 1fr; padding: 1.6rem; }
+  .sp-modal-photo { width: 150px; margin: 0 auto; }
+  .sp-modal-text { text-align: left; }
+}
+
+/* ---------- Registration form ---------- */
+.reg-form { max-width: 640px; margin-top: 2.5rem; }
+.reg-field { margin-bottom: 1.4rem; }
+.reg-field label { display: block; font-weight: 800; font-size: .9rem; margin-bottom: .45rem; }
+.reg-field input {
+  width: 100%; padding: .95rem 1.1rem; border: 1px solid var(--ink);
+  background: #fff; font-family: var(--body); font-size: 1rem;
+  border-radius: 0; box-sizing: border-box;
+}
+.reg-field input:focus { outline: 3px solid rgba(255,64,0,.22); border-color: var(--accent); }
+.reg-hint { display: block; margin-top: .4rem; color: var(--ink-soft); font-size: .8rem; }
+.reg-consent {
+  margin: 1.8rem 0; padding: 1.1rem 1.2rem; border: 1px solid var(--line);
+  background: var(--paper-warm); font-size: .85rem; color: var(--ink-soft);
+}
+.reg-consent label { display: flex; gap: .7rem; align-items: flex-start; cursor: pointer; }
+.reg-consent input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--accent); flex-shrink: 0; }
+.reg-msg { margin-top: 1rem; font-weight: 700; }
+.reg-done { max-width: 900px; margin-top: 2rem; }
 
 /* coming soon */
 .coming-wrap {
