@@ -290,31 +290,22 @@ ul { list-style: none; }
 .speaker-photo {
   aspect-ratio: 1/1; border-radius: 50%; overflow: hidden;
   background: var(--paper-warm);
-  border: 1px solid var(--ink);
   position: relative;
-  width: min(100%, 260px); margin: 0 auto;
-  transition: border-color .25s, box-shadow .25s;
+  width: min(100%, 190px); margin: 0 auto;
+  padding: 6%;
 }
 .speaker-photo img {
-  width: 100%; height: 100%; object-fit: cover; object-position: center 28%;
-  transition: transform .45s;
+  width: 100%; height: 100%; object-fit: contain; object-position: center;
+  transition: transform .35s;
 }
-.speaker-card:hover .speaker-photo {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 5px rgba(255,64,0,.15);
-}
-.speaker-card:hover .speaker-photo img { transform: scale(1.06); }
+.speaker-card:hover .speaker-photo img { transform: scale(1.04); }
 .speaker-photo .ph-fallback {
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
   font-family: var(--display); font-stretch: 122%; font-weight: 900;
   font-size: 2.4rem; color: var(--line); text-transform: uppercase; text-align: center;
 }
 .speaker-info { padding: 1rem .1rem 0; text-align: center; }
-.speaker-info h3 {
-  font-size: 1.1rem; font-weight: 800; letter-spacing: -.01em;
-  display: inline-block; border-bottom: 2px solid transparent; transition: border-color .2s;
-}
-.speaker-card:hover .speaker-info h3 { border-color: var(--accent); }
+.speaker-info h3 { font-size: 1.1rem; font-weight: 800; letter-spacing: -.01em; }
 .speaker-info p { font-size: .85rem; color: var(--ink-soft); margin-top: .25rem; word-break: keep-all; line-height: 1.5; }
 
 /* ---------- Theme big statement ---------- */
