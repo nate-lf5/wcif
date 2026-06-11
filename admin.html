@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WCIF 2026 관리자 모드</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Pretendard',sans-serif; background:#f0eee8; color:#111; line-height:1.6; padding-bottom:120px; }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 20px; }
+  header.bar { position:sticky; top:0; z-index:10; background:#111014; color:#f5f3ee; padding:16px 0; box-shadow:0 2px 12px rgba(0,0,0,.15); }
+  header.bar .wrap { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+  header.bar h1 { font-size:1.15rem; font-weight:800; }
+  header.bar h1 span { color:#ff4000; }
+  .btn { display:inline-block; border:0; cursor:pointer; font-family:inherit; font-weight:800; font-size:.9rem; padding:10px 18px; border-radius:8px; transition:all .2s; }
+  .btn-save { background:#ff4000; color:#fff; }
+  .btn-save:hover { background:#d33500; }
+  .btn-dl { background:#f5f3ee; color:#111; }
+  .btn-dl:hover { background:#ddd; }
+  .btn-sm { font-size:.8rem; padding:6px 12px; font-weight:700; }
+  .btn-add { background:#111; color:#fff; }
+  .btn-del { background:#fff; color:#c00; border:1px solid #e0b9b9; }
+  .btn-mv { background:#fff; color:#444; border:1px solid #ccc; padding:6px 10px; }
+  .notice { background:#fff8e8; border:1px solid #e8d8a8; border-radius:10px; padding:14px 18px; margin:20px 0; font-size:.9rem; }
+  .notice b { color:#9a6b00; }
+  section.card { background:#fff; border:1px solid #ddd9d0; border-radius:14px; padding:26px; margin:22px 0; }
+  section.card > h2 { font-size:1.2rem; font-weight:800; margin-bottom:4px; }
+  section.card > .desc { font-size:.85rem; color:#777; margin-bottom:18px; }
+  label { display:block; font-size:.78rem; font-weight:700; color:#666; margin:12px 0 4px; }
+  input[type=text], input[type=url] { width:100%; padding:9px 12px; border:1px solid #ccc7bc; border-radius:8px; font-family:inherit; font-size:.92rem; background:#fcfbf8; }
+  input:focus { outline:2px solid #ff4000; border-color:transparent; }
+  .row { display:grid; grid-template-columns:1fr 1fr; gap:0 16px; }
+  .row3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:0 16px; }
+  .chk { display:flex; align-items:center; gap:8px; font-weight:700; font-size:.95rem; margin-top:6px; }
+  .chk input { width:18px; height:18px; accent-color:#ff4000; }
+  .day-card, .sp-card { border:1px solid #e3dfd6; border-radius:10px; padding:18px; margin:14px 0; background:#faf9f5; }
+  .day-head, .sp-head { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:6px; }
+  .day-head h3, .sp-head h3 { font-size:1rem; font-weight:800; }
+  .item-row { display:grid; grid-template-columns:84px 1fr 1fr 34px; gap:8px; margin-top:8px; align-items:start; }
+  .item-row .col { display:flex; flex-direction:column; gap:6px; }
+  .item-row input { font-size:.85rem; padding:7px 10px; }
+  .item-x { background:#fff; border:1px solid #ddd; color:#c00; border-radius:8px; height:34px; cursor:pointer; font-weight:800; }
+  .item-hint { font-size:.72rem; color:#999; margin-top:2px; }
+  .sp-grid { display:grid; grid-template-columns:90px 1fr; gap:16px; align-items:start; }
+  .sp-thumb { width:90px; height:76px; object-fit:cover; border-radius:8px; border:1px solid #ddd; background:#eee; }
+  .head-actions { display:flex; gap:6px; }
+  .saved-toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:#111; color:#fff; padding:12px 22px; border-radius:999px; font-weight:700; display:none; z-index:99; }
+  footer.note { text-align:center; font-size:.8rem; color:#999; margin-top:30px; }
+  @media (max-width:760px){ .row,.row3{grid-template-columns:1fr;} .item-row{grid-template-columns:70px 1fr 34px;} .item-row .col-eng{grid-column:2;} }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <h1>WCIF <span>2026</span> 관리자 모드</h1>
+    <div>
+      <button class="btn btn-save" id="btnSave">저장 (사이트에 반영)</button>
+      <button class="btn btn-dl" id="btnDownload">content.js 다운로드</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="notice">
+    <b>사용 방법</b> · 내용을 수정한 뒤 <b>저장</b> 버튼을 누르고, 폴더 선택 창이 뜨면 <b>wcif 폴더</b>를 선택해주세요.
+    저장 후 사이트를 새로고침하면 바로 반영됩니다. (폴더 저장이 안 되는 브라우저에서는 '다운로드'를 누른 뒤,
+    받은 content.js 파일을 wcif 폴더 안의 <b>js 폴더</b>에 덮어쓰면 됩니다.)
+  </div>
+
+  <section class="card" id="secReg">
+    <h2>1. 하단 사전등록 플로팅 바</h2>
+    <div class="desc">모든 페이지 하단에 고정되는 등록 안내 바입니다.</div>
+    <div class="chk"><input type="checkbox" id="regEnabled"> <label for="regEnabled" style="margin:0;font-size:.95rem;color:#111">플로팅 바 표시</label></div>
+    <label>등록 링크 (URL 또는 mailto:이메일)</label>
+    <input type="text" id="regUrl">
+    <div class="row">
+      <div>
+        <label>문구 (한국어)</label><input type="text" id="regLabelKor">
+        <label>강조 문구 (한국어)</label><input type="text" id="regHlKor">
+        <label>버튼 문구 (한국어)</label><input type="text" id="regBtnKor">
+      </div>
+      <div>
+        <label>문구 (영어)</label><input type="text" id="regLabelEng">
+        <label>강조 문구 (영어)</label><input type="text" id="regHlEng">
+        <label>버튼 문구 (영어)</label><input type="text" id="regBtnEng">
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>2. 프로그램 시간표</h2>
+    <div class="desc">program.html 페이지의 시간표입니다. 트랙(블록) 단위로 추가/삭제할 수 있습니다.</div>
+    <div id="schedWrap"></div>
+    <button class="btn btn-add btn-sm" id="btnAddDay">+ 트랙(블록) 추가</button>
+  </section>
+
+  <section class="card">
+    <h2>3. 초청연사</h2>
+    <div class="desc">연사 사진(이미지 주소), 이름, 직함을 수정합니다. '메인 노출'에 체크된 연사는 메인 페이지에 표시됩니다(최대 6명).
+    사진 파일을 직접 쓰려면 wcif 폴더 안에 images 폴더를 만들어 파일을 넣고, 이미지 주소에 <b>images/파일명.png</b> 형태로 입력하세요.</div>
+    <div id="spWrap"></div>
+    <button class="btn btn-add btn-sm" id="btnAddSp">+ 연사 추가</button>
+  </section>
+
+  <footer class="note">WCIF 2026 Admin · 이 페이지는 검색엔진에 노출되지 않습니다.</footer>
+</div>
+
+<div class="saved-toast" id="toast">저장되었습니다</div>
+
+<script src="js/content.js"></script>
+<script>
+var data = JSON.parse(JSON.stringify(window.WCIF_CONTENT || {registration:{},schedule:[],speakers:[]}));
+
+function $(id){ return document.getElementById(id); }
+function toast(msg){ var t=$('toast'); t.textContent=msg; t.style.display='block'; setTimeout(function(){t.style.display='none';},2500); }
+
+/* ---------- 1. 플로팅 바 ---------- */
+function initReg(){
+  var r = data.registration = data.registration || {};
+  r.kor = r.kor||{}; r.eng = r.eng||{};
+  $('regEnabled').checked = !!r.enabled;
+  $('regUrl').value = r.url||'';
+  $('regLabelKor').value = r.kor.label||''; $('regHlKor').value = r.kor.highlight||''; $('regBtnKor').value = r.kor.btn||'';
+  $('regLabelEng').value = r.eng.label||''; $('regHlEng').value = r.eng.highlight||''; $('regBtnEng').value = r.eng.btn||'';
+}
+function readReg(){
+  var r = data.registration;
+  r.enabled = $('regEnabled').checked;
+  r.url = $('regUrl').value.trim();
+  r.kor = {label:$('regLabelKor').value, highlight:$('regHlKor').value, btn:$('regBtnKor').value};
+  r.eng = {label:$('regLabelEng').value, highlight:$('regHlEng').value, btn:$('regBtnEng').value};
+}
+
+/* ---------- 2. 시간표 ---------- */
+function renderSched(){
+  var w = $('schedWrap'); w.innerHTML='';
+  data.schedule.forEach(function(day, di){
+    day.kor=day.kor||{}; day.eng=day.eng||{}; day.items=day.items||[];
+    var card = document.createElement('div'); card.className='day-card';
+    var head = document.createElement('div'); head.className='day-head';
+    head.innerHTML = '<h3>블록 '+(di+1)+'</h3>';
+    var acts = document.createElement('div'); acts.className='head-actions';
+    acts.appendChild(mkBtn('↑','btn-mv',function(){ if(di>0){ data.schedule.splice(di-1,0,data.schedule.splice(di,1)[0]); renderSched(); }}));
+    acts.appendChild(mkBtn('↓','btn-mv',function(){ if(di<data.schedule.length-1){ data.schedule.splice(di+1,0,data.schedule.splice(di,1)[0]); renderSched(); }}));
+    acts.appendChild(mkBtn('블록 삭제','btn-del',function(){ if(confirm('이 블록을 삭제할까요?')){ data.schedule.splice(di,1); renderSched(); }}));
+    head.appendChild(acts); card.appendChild(head);
+
+    card.appendChild(mkField('구분 (한국어, 예: 1일차)', day.kor.tag||'', function(v){day.kor.tag=v;}));
+    card.appendChild(mkField('구분 (영어, 예: Day 1)', day.eng.tag||'', function(v){day.eng.tag=v;}));
+    card.appendChild(mkField('블록 제목 (한국어)', day.kor.title||'', function(v){day.kor.title=v;}));
+    card.appendChild(mkField('블록 제목 (영어)', day.eng.title||'', function(v){day.eng.title=v;}));
+
+    var lbl = document.createElement('label'); lbl.textContent='세부 일정 (시간 / 내용·연사 한국어 / 내용·연사 영어)'; card.appendChild(lbl);
+    day.items.forEach(function(it, ii){
+      it.kor=it.kor||{}; it.eng=it.eng||{};
+      var row = document.createElement('div'); row.className='item-row';
+      row.appendChild(mkInput(it.time||'', '시간', function(v){it.time=v;}));
+      var c1 = document.createElement('div'); c1.className='col';
+      c1.appendChild(mkInput(it.kor.title||'', '내용 (한국어)', function(v){it.kor.title=v;}));
+      c1.appendChild(mkInput(it.kor.who||'', '연사/비고 (한국어)', function(v){it.kor.who=v;}));
+      row.appendChild(c1);
+      var c2 = document.createElement('div'); c2.className='col col-eng';
+      c2.appendChild(mkInput(it.eng.title||'', '내용 (영어)', function(v){it.eng.title=v;}));
+      c2.appendChild(mkInput(it.eng.who||'', '연사/비고 (영어)', function(v){it.eng.who=v;}));
+      row.appendChild(c2);
+      var x = document.createElement('button'); x.className='item-x'; x.textContent='×'; x.title='행 삭제';
+      x.onclick=function(){ day.items.splice(ii,1); renderSched(); };
+      row.appendChild(x);
+      card.appendChild(row);
+    });
+    var add = mkBtn('+ 일정 행 추가','btn-add btn-sm',function(){ day.items.push({time:'',kor:{title:'',who:''},eng:{title:'',who:''}}); renderSched(); });
+    add.style.marginTop='10px'; card.appendChild(add);
+    w.appendChild(card);
+  });
+}
+
+/* ---------- 3. 연사 ---------- */
+function renderSp(){
+  var w = $('spWrap'); w.innerHTML='';
+  data.speakers.forEach(function(s, si){
+    s.kor=s.kor||{}; s.eng=s.eng||{};
+    var card = document.createElement('div'); card.className='sp-card';
+    var head = document.createElement('div'); head.className='sp-head';
+    head.innerHTML = '<h3>'+(si+1)+'. '+(s.kor.name||'(이름 없음)')+'</h3>';
+    var acts = document.createElement('div'); acts.className='head-actions';
+    var feat = document.createElement('label'); feat.className='chk'; feat.style.margin='0';
+    var fc = document.createElement('input'); fc.type='checkbox'; fc.checked=!!s.featured;
+    fc.onchange=function(){ s.featured=fc.checked; };
+    feat.appendChild(fc); feat.appendChild(document.createTextNode('메인 노출'));
+    acts.appendChild(feat);
+    acts.appendChild(mkBtn('↑','btn-mv',function(){ if(si>0){ data.speakers.splice(si-1,0,data.speakers.splice(si,1)[0]); renderSp(); }}));
+    acts.appendChild(mkBtn('↓','btn-mv',function(){ if(si<data.speakers.length-1){ data.speakers.splice(si+1,0,data.speakers.splice(si,1)[0]); renderSp(); }}));
+    acts.appendChild(mkBtn('삭제','btn-del',function(){ if(confirm('이 연사를 삭제할까요?')){ data.speakers.splice(si,1); renderSp(); }}));
+    head.appendChild(acts); card.appendChild(head);
+
+    var grid = document.createElement('div'); grid.className='sp-grid';
+    var img = document.createElement('img'); img.className='sp-thumb'; img.src=s.img||''; img.alt='';
+    img.onerror=function(){ img.style.opacity='.25'; };
+    grid.appendChild(img);
+    var right = document.createElement('div');
+    right.appendChild(mkField('사진 이미지 주소 (URL 또는 images/파일명.png)', s.img||'', function(v){ s.img=v; img.src=v; img.style.opacity='1'; }));
+    var r1 = document.createElement('div'); r1.className='row';
+    r1.appendChild(wrapField('이름 (한국어)', s.kor.name||'', function(v){s.kor.name=v;}));
+    r1.appendChild(wrapField('이름 (영어)', s.eng.name||'', function(v){s.eng.name=v;}));
+    right.appendChild(r1);
+    var r2 = document.createElement('div'); r2.className='row';
+    r2.appendChild(wrapField('직함 (한국어)', s.kor.title||'', function(v){s.kor.title=v;}));
+    r2.appendChild(wrapField('직함 (영어)', s.eng.title||'', function(v){s.eng.title=v;}));
+    right.appendChild(r2);
+    grid.appendChild(right); card.appendChild(grid);
+    w.appendChild(card);
+  });
+}
+
+/* ---------- 헬퍼 ---------- */
+function mkBtn(txt, cls, fn){ var b=document.createElement('button'); b.className='btn btn-sm '+cls; b.textContent=txt; b.onclick=fn; return b; }
+function mkInput(val, ph, on){ var i=document.createElement('input'); i.type='text'; i.value=val; i.placeholder=ph; i.oninput=function(){on(i.value);}; return i; }
+function mkField(label, val, on){ var d=document.createElement('div'); var l=document.createElement('label'); l.textContent=label; d.appendChild(l); d.appendChild(mkInput(val,'',on)); return d; }
+function wrapField(label, val, on){ return mkField(label, val, on); }
+
+/* ---------- 저장 ---------- */
+function serialize(){
+  readReg();
+  return '// =====================================================\n'+
+    '// WCIF 2026 - 사이트 콘텐츠 데이터 (admin.html에서 생성됨)\n'+
+    '// =====================================================\n'+
+    'window.WCIF_CONTENT = '+JSON.stringify(data, null, 2)+';\n';
+}
+
+$('btnSave').onclick = async function(){
+  if (!window.showDirectoryPicker){
+    alert('이 브라우저는 폴더 저장을 지원하지 않습니다. (Chrome/Edge 권장)\n대신 content.js 다운로드를 진행합니다.');
+    download(); return;
+  }
+  try {
+    var dir = await window.showDirectoryPicker({ mode: 'readwrite' });
+    var jsDir;
+    try { jsDir = await dir.getDirectoryHandle('js'); }
+    catch(e){ alert('선택한 폴더에서 js 폴더를 찾지 못했습니다.\nwcif 폴더(홈페이지 폴더)를 선택해주세요.'); return; }
+    var fh = await jsDir.getFileHandle('content.js', { create: true });
+    var w = await fh.createWritable();
+    await w.write(serialize());
+    await w.close();
+    toast('저장 완료! 사이트를 새로고침하면 반영됩니다.');
+  } catch(e) {
+    if (e && e.name === 'AbortError') return;
+    alert('저장 중 문제가 발생했습니다. content.js 다운로드 방식을 이용해주세요.\n('+e+')');
+  }
+};
+
+function download(){
+  var blob = new Blob([serialize()], {type:'text/javascript'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'content.js';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast('다운로드됨 · js 폴더의 content.js를 교체하세요');
+}
+$('btnDownload').onclick = download;
+
+initReg(); renderSched(); renderSp();
+</script>
+</body>
+</html>
