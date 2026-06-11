@@ -4,6 +4,10 @@
   if (!C) return;
   var isEn = (document.documentElement.lang || '').toLowerCase() === 'en';
   var L = isEn ? 'eng' : 'kor';
+  var inSub = location.pathname.replace(/\\/g, '/').indexOf('/en/') !== -1;
+  function asset(p) {
+    return (p && !/^(https?:|data:|\/)/i.test(p) && inSub) ? '../' + p : p;
+  }
 
   function esc(s) {
     return String(s == null ? '' : s)
@@ -108,7 +112,8 @@
         '<ul class="sched-list">';
       (day.items || []).forEach(function (it) {
         var i = it[L] || it.kor;
-        sHtml += '<li><span class="time">' + esc(it.time) + '</span>' +
+        sHtml += '<li' + (it.time ? '' : ' class="sched-sub"') + '>' +
+          '<span class="time">' + esc(it.time) + '</span>' +
           '<span class="what">' + esc(i.title) + '</span>' +
           '<span class="who">' + esc(i.who || '') + '</span></li>';
       });
@@ -124,7 +129,7 @@
   function speakerCard(s) {
     var p = s[L] || s.kor;
     return '<article class="speaker-card" data-name="' + esc(s.kor.name) + '" role="button" tabindex="0">' +
-      '<div class="speaker-photo"><img src="' + esc(s.img) + '" alt="' + esc(p.name) + '" loading="lazy"></div>' +
+      '<div class="speaker-photo"><img src="' + esc(asset(s.img)) + '" alt="' + esc(p.name) + '" loading="lazy"></div>' +
       '<div class="speaker-info"><h3>' + esc(p.name) + '</h3><p>' + esc(p.title) + '</p></div>' +
       '</article>';
   }
@@ -149,7 +154,7 @@
       '<div class="sp-modal" role="dialog" aria-modal="true" aria-label="' + esc(p.name) + '">' +
         '<button class="sp-modal-close" type="button" aria-label="닫기">×</button>' +
         '<div class="sp-modal-body">' +
-          '<div class="sp-modal-photo"><img src="' + esc(s.img) + '" alt="' + esc(p.name) + '"></div>' +
+          '<div class="sp-modal-photo"><img src="' + esc(asset(s.img)) + '" alt="' + esc(p.name) + '"></div>' +
           '<div class="sp-modal-text">' +
             '<div class="sp-modal-label">' + (isEn ? 'Speaker' : '연사 소개') + '</div>' +
             '<h3>' + esc(p.name) + '</h3>' +
@@ -213,7 +218,7 @@
       var d = a[L] || a.kor;
       var inner;
       if (a.poster) {
-        inner = '<img class="arc-poster" src="' + esc(a.poster) + '" alt="' + esc(a.year) + ' WCIF poster" loading="lazy">' +
+        inner = '<img class="arc-poster" src="' + esc(asset(a.poster)) + '" alt="' + esc(a.year) + ' WCIF poster" loading="lazy">' +
                 '<div class="arc-overlay"><div class="arc-year">' + esc(a.year) + '</div><div class="arc-title">' + esc(d.title) + '</div></div>';
       } else {
         inner = '<div class="arc-body">' +
