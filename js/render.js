@@ -79,6 +79,46 @@
     footUl.style.columnGap = '2.5rem';
   }
 
+  /* ---------- 0.5 공지 팝업 (메인 페이지 전용) ---------- */
+  var isMain = !!document.querySelector('.hero');
+  if (isMain && C.popup && C.popup.enabled) {
+    var today = new Date().toISOString().slice(0, 10);
+    var hidden = false;
+    try { hidden = localStorage.getItem('wcif_popup_hide') === today; } catch (e) {}
+    if (!hidden) {
+      var pp = C.popup, pt = pp[L] || pp.kor;
+      var pov = document.createElement('div');
+      pov.className = 'site-popup';
+      pov.innerHTML =
+        '<div class="site-popup-box" role="dialog" aria-modal="true" aria-label="' + esc(pt.title) + '">' +
+          '<div class="site-popup-head">' +
+            '<span class="site-popup-label">' + esc(pt.label) + '</span>' +
+            '<button class="site-popup-x" type="button" aria-label="닫기">×</button>' +
+          '</div>' +
+          '<div class="site-popup-body">' +
+            '<h3>' + esc(pt.title) + '</h3>' +
+            (pt.lines || []).map(function (l) { return '<p>' + esc(l) + '</p>'; }).join('') +
+            (pp.url ? '<a class="btn-primary site-popup-btn" href="' + esc(pp.url) + '">' + esc(pt.btn) + '</a>' : '') +
+          '</div>' +
+          '<div class="site-popup-foot">' +
+            '<label><input type="checkbox" class="site-popup-chk"> ' + esc(pt.hide) + '</label>' +
+            '<button class="site-popup-close" type="button">' + esc(pt.close) + '</button>' +
+          '</div>' +
+        '</div>';
+      document.body.appendChild(pov);
+      function closePopup() {
+        if (pov.querySelector('.site-popup-chk').checked) {
+          try { localStorage.setItem('wcif_popup_hide', today); } catch (e) {}
+        }
+        pov.remove();
+      }
+      pov.querySelector('.site-popup-x').addEventListener('click', closePopup);
+      pov.querySelector('.site-popup-close').addEventListener('click', closePopup);
+      var popBtn = pov.querySelector('.site-popup-btn');
+      if (popBtn) popBtn.addEventListener('click', function () { pov.remove(); });
+    }
+  }
+
   /* ---------- 1. 하단 고정 플로팅 등록 바 ---------- */
   if (C.registration && C.registration.enabled) {
     var r = C.registration, t = r[L] || r.kor;

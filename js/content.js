@@ -4,6 +4,34 @@
 // 직접 수정해도 됩니다 (수정 후 사이트 새로고침).
 // =====================================================
 window.WCIF_CONTENT = {
+  "popup": {
+    "enabled": true,
+    "url": "index.html#location",
+    "kor": {
+      "label": "Notice",
+      "title": "오시는 길 안내",
+      "lines": [
+        "행사장 · 호텔수성 (대구 수성구 용학로 106-7)",
+        "일시 · 2026.07.02(목) - 07.03(금)",
+        "원활한 입장을 위해 사전등록 후 방문을 권장드립니다."
+      ],
+      "btn": "지도에서 위치 보기",
+      "hide": "오늘 하루 보지 않기",
+      "close": "닫기"
+    },
+    "eng": {
+      "label": "Notice",
+      "title": "Getting to WCIF 2026",
+      "lines": [
+        "Venue · Hotel Susung (Yonghak-ro 106-7, Suseong-gu, Daegu)",
+        "Dates · July 2 (Thu) - 3 (Fri), 2026",
+        "Pre-registration is recommended for smooth entry."
+      ],
+      "btn": "View on Map",
+      "hide": "Don't show again today",
+      "close": "Close"
+    }
+  },
   "registration": {
     "enabled": true,
     "url": "register.html",
