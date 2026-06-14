@@ -325,6 +325,7 @@
     if (loop && opts.auto) {
       prev.style.display = next.style.display = 'none';
       grid.style.scrollBehavior = 'auto';
+      grid.style.scrollSnapType = 'none';
       var paused = false;
       function tick() {
         if (!paused && unitCache) grid.scrollLeft += 0.5;
@@ -361,7 +362,7 @@
   var fsRoot = document.getElementById('futurestage-speakers');
   if (fsRoot && C.futureStage) {
     fsRoot.innerHTML = C.futureStage.map(speakerCard).join('');
-    makeCarousel(fsRoot, { loop: true });
+    makeCarousel(fsRoot, { loop: true, auto: true });
     bindSpeakerClicks(fsRoot);
   }
 
