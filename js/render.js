@@ -168,8 +168,11 @@
   /* ---------- 3. 연사 ---------- */
   function speakerCard(s) {
     var p = s[L] || s.kor;
+    var photo = s.img
+      ? '<img src="' + esc(asset(s.img)) + '" alt="' + esc(p.name) + '" loading="lazy">'
+      : '<div class="ph-fallback">' + esc(p.name.charAt(0)) + '</div>';
     return '<article class="speaker-card" data-name="' + esc(s.kor.name) + '" role="button" tabindex="0">' +
-      '<div class="speaker-photo' + (s.noshape ? ' no-shape' : '') + '"><img src="' + esc(asset(s.img)) + '" alt="' + esc(p.name) + '" loading="lazy"></div>' +
+      '<div class="speaker-photo' + (s.noshape ? ' no-shape' : '') + '">' + photo + '</div>' +
       '<div class="speaker-info"><h3>' + esc(p.name) + '</h3><p>' + esc(p.title) + '</p></div>' +
       '</article>';
   }
@@ -194,7 +197,9 @@
       '<div class="sp-modal" role="dialog" aria-modal="true" aria-label="' + esc(p.name) + '">' +
         '<button class="sp-modal-close" type="button" aria-label="닫기">×</button>' +
         '<div class="sp-modal-body">' +
-          '<div class="sp-modal-photo' + (s.noshape ? ' no-shape' : '') + '"><img src="' + esc(asset(s.img)) + '" alt="' + esc(p.name) + '"></div>' +
+          '<div class="sp-modal-photo' + (s.noshape ? ' no-shape' : '') + '">' +
+            (s.img ? '<img src="' + esc(asset(s.img)) + '" alt="' + esc(p.name) + '">' : '<div class="ph-fallback" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">' + esc(p.name.charAt(0)) + '</div>') +
+          '</div>' +
           '<div class="sp-modal-text">' +
             '<div class="sp-modal-label">' + (isEn ? 'Speaker' : '연사 소개') + '</div>' +
             '<h3>' + esc(p.name) + '</h3>' +
@@ -231,6 +236,46 @@
     });
   }
 
+  // 연사 그리드를 가로 스크롤 캐러셀로 변환 (이전/다음 넘기기 버튼)
+  function makeCarousel(grid) {
+    if (!grid || grid.dataset.carousel) return;
+    grid.dataset.carousel = '1';
+    grid.classList.add('is-carousel');
+    var wrap = document.createElement('div');
+    wrap.className = 'speaker-carousel';
+    grid.parentNode.insertBefore(wrap, grid);
+    wrap.appendChild(grid);
+
+    var prev = document.createElement('button');
+    prev.type = 'button'; prev.className = 'carousel-btn prev';
+    prev.setAttribute('aria-label', isEn ? 'Previous speakers' : '이전 연사'); prev.innerHTML = '‹';
+    var next = document.createElement('button');
+    next.type = 'button'; next.className = 'carousel-btn next';
+    next.setAttribute('aria-label', isEn ? 'Next speakers' : '다음 연사'); next.innerHTML = '›';
+    wrap.appendChild(prev); wrap.appendChild(next);
+
+    function step() {
+      var card = grid.querySelector('.speaker-card');
+      var w = card ? card.getBoundingClientRect().width : 220;
+      var gap = parseFloat(getComputedStyle(grid).columnGap || getComputedStyle(grid).gap) || 24;
+      var per = Math.max(1, Math.floor(grid.clientWidth / (w + gap)) - 1);
+      return (w + gap) * per;
+    }
+    prev.addEventListener('click', function () { grid.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    next.addEventListener('click', function () { grid.scrollBy({ left: step(), behavior: 'smooth' }); });
+
+    function update() {
+      var noScroll = grid.scrollWidth <= grid.clientWidth + 4;
+      prev.style.display = next.style.display = noScroll ? 'none' : 'flex';
+      var max = grid.scrollWidth - grid.clientWidth - 2;
+      prev.disabled = grid.scrollLeft <= 2;
+      next.disabled = grid.scrollLeft >= max;
+    }
+    grid.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    setTimeout(update, 80);
+  }
+
   var spFull = document.getElementById('speakers-root');
   if (spFull && C.speakers) {
     var full = C.speakers.map(speakerCard).join('');
@@ -241,6 +286,7 @@
       '</p></div></article>';
     spFull.innerHTML = full;
     bindSpeakerClicks(spFull);
+    makeCarousel(spFull);
   }
   var spFeat = document.getElementById('speakers-featured');
   if (spFeat && C.speakers) {
@@ -248,6 +294,7 @@
     if (feat.length === 0) feat = C.speakers.slice(0, 6);
     spFeat.innerHTML = feat.slice(0, 6).map(speakerCard).join('');
     bindSpeakerClicks(spFeat);
+    makeCarousel(spFeat);
   }
 
   /* ---------- 4. 아카이빙 (역대 행사) ---------- */
@@ -334,16 +381,19 @@
   }
 
   /* ---------- 6. NEWS (Notice / Press) ---------- */
-  function newsList(items) {
+  function newsList(items, noLink) {
     return items.map(function (n) {
+      var inner = '<span class="n-date">' + esc(n.date) + '</span>' +
+        '<span class="n-title">' + esc(n[L] || n.kor) + '</span>';
+      if (noLink || !n.url) {
+        return '<li><div class="n-row">' + inner + '</div></li>';
+      }
       return '<li><a href="' + esc(n.url) + '" target="_blank" rel="noopener">' +
-        '<span class="n-date">' + esc(n.date) + '</span>' +
-        '<span class="n-title">' + esc(n[L] || n.kor) + '</span>' +
-        '<span class="n-arrow">↗</span></a></li>';
+        inner + '<span class="n-arrow">↗</span></a></li>';
     }).join('');
   }
   var noticeRoot = document.getElementById('notice-list');
-  if (noticeRoot && C.news && C.news.notice) noticeRoot.innerHTML = newsList(C.news.notice);
+  if (noticeRoot && C.news && C.news.notice) noticeRoot.innerHTML = newsList(C.news.notice, true);
   var pressRoot = document.getElementById('press-list');
   if (pressRoot && C.news && C.news.press) pressRoot.innerHTML = newsList(C.news.press);
 })();

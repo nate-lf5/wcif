@@ -117,7 +117,7 @@ window.WCIF_CONTENT = {
     { "featured": false, "img": "images/speakers/yuko-obuchi.webp", "kor": { "name": "오부치 유코", "title": "일본 국회 중의원" }, "eng": { "name": "Yuko Obuchi", "title": "Member, House of Representatives, Japan" } },
     { "featured": false, "img": "images/speakers/kim-sanghyup.webp", "kor": { "name": "김상협", "title": "GGGI 사무총장" }, "eng": { "name": "Kim Sang-hyup", "title": "Director-General, GGGI" } },
     { "featured": false, "img": "images/speakers/yoon-minho.webp", "kor": { "name": "윤민호", "title": "일본국제금융정보센터(JCIF) 특임연구위원실장" }, "eng": { "name": "Yoon Min-ho", "title": "Head of Special Research, JCIF" } },
-    { "featured": false, "noshape": true, "img": "https://wcif.world/wp-content/uploads/2026/05/Sub_19.시부카와시.png", "kor": { "name": "시부카와시", "title": "일본 시부카와시" }, "eng": { "name": "Shibukawa City", "title": "Shibukawa, Japan" } },
+    { "featured": false, "noshape": true, "img": "", "kor": { "name": "시부카와시", "title": "일본 시부카와시" }, "eng": { "name": "Shibukawa City", "title": "Shibukawa, Japan" } },
     { "featured": false, "img": "images/speakers/eom-chanyong.webp", "kor": { "name": "엄찬용", "title": "트립서포터즈 대표" }, "eng": { "name": "Eom Chan-yong", "title": "CEO, Trip Supporters" } },
     { "featured": false, "img": "images/speakers/park-yoonjin.webp", "kor": { "name": "박윤진", "title": "오피스박김 대표" }, "eng": { "name": "Park Yoon-jin", "title": "CEO, Office ParkKim" } },
     { "featured": false, "img": "images/speakers/bae-sunghyuk.webp", "kor": { "name": "배성혁", "title": "DIMF 집행위원장" }, "eng": { "name": "Bae Sung-hyuk", "title": "Executive Director, DIMF" } },
