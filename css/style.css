@@ -7,10 +7,12 @@
   --ink-soft: #555c7c;
   --paper: #f4f6fd;
   --paper-warm: #e7ebfa;
-  --accent: #2547e5;
-  --accent-dark: #1b36bc;
+  --accent: #1340e6;
+  --accent-dark: #0c2db2;
   --accent-soft: #aec0f8;
   --line: #d3daf1;
+  --neon: #9ef603;
+  --neon-deep: #7ac400;
   --display: 'Archivo', 'Pretendard', 'Noto Sans KR', sans-serif;
   --body: 'Pretendard', 'Noto Sans KR', -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
 }
@@ -149,7 +151,6 @@ ul { list-style: none; }
 .hero-meta {
   display: flex; flex-wrap: wrap; gap: .8rem 2.5rem;
   margin-top: 2rem; padding-top: 1.4rem;
-  border-top: 1px solid var(--ink);
   align-items: baseline;
   font-size: .95rem; color: var(--ink-soft);
 }
@@ -311,6 +312,14 @@ ul { list-style: none; }
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
   font-family: var(--display); font-stretch: 122%; font-weight: 900;
   font-size: 2.4rem; color: var(--line); text-transform: uppercase; text-align: center;
+}
+.speaker-role {
+  position: absolute; left: 50%; bottom: 6%; transform: translateX(-50%);
+  z-index: 2; background: var(--accent); color: #fff;
+  font-family: var(--display); font-stretch: 110%; font-weight: 800;
+  font-size: .6rem; letter-spacing: .1em; text-transform: uppercase;
+  padding: .22rem .6rem; white-space: nowrap; line-height: 1.15;
+  box-shadow: 0 2px 8px rgba(16,20,43,.2);
 }
 .speaker-info { padding: 1rem .1rem 0; text-align: left; }
 .speaker-info h3 { font-size: 1.1rem; font-weight: 800; letter-spacing: -.01em; }
@@ -907,3 +916,53 @@ body.has-float .scroll-cue { bottom: 92px; }
   .archive-grid { grid-template-columns: 1fr; }
   .arc-tile { aspect-ratio: 4/3; }
 }
+
+/* ============================================
+   Future Stage — 블랙 + 네온그린 테마 (브로셔 피오니홀 매칭)
+   <body class="fs-theme"> 인 페이지에만 적용
+   ============================================ */
+body.fs-theme {
+  --accent: var(--neon);
+  --accent-dark: var(--neon-deep);
+  --accent-soft: #d2ff7a;
+  background: #0d0f0a;
+  color: #e9ece3;
+}
+body.fs-theme .site-header { background: #0d0f0a; border-bottom-color: #2b2f22; }
+body.fs-theme .nav-toggle span,
+body.fs-theme .nav-toggle span::before,
+body.fs-theme .nav-toggle span::after { background: #e9ece3; }
+body.fs-theme .nav-item .sub { background: #16190f; border-color: #2b2f22; box-shadow: 0 14px 30px rgba(0,0,0,.5); }
+body.fs-theme .nav-item .sub a:hover { background: var(--accent); color: #0d0f0a; }
+body.fs-theme .lang-switch { color: #8f9484; }
+body.fs-theme .btn-cta { background: var(--accent); color: #0d0f0a; }
+body.fs-theme .btn-cta:hover { background: #fff; color: #0d0f0a; }
+
+body.fs-theme .page-hero { background: #0d0f0a; color: #e9ece3; }
+body.fs-theme .page-hero::before {
+  background:
+    radial-gradient(ellipse 42% 46% at 82% 8%, rgba(158,246,3,.20), transparent 62%),
+    radial-gradient(ellipse 38% 42% at 8% 92%, rgba(158,246,3,.10), transparent 65%);
+}
+body.fs-theme .page-hero .crumb { color: rgba(233,236,227,.55); }
+
+body.fs-theme .section.warm { background: #14170d; border-color: #2b2f22; }
+body.fs-theme .section-head-row { border-bottom-color: #34392a; }
+body.fs-theme .section-title .en { color: var(--accent); }
+body.fs-theme .section-desc { color: #a7ab9b; }
+
+body.fs-theme .speaker-photo::before { background: var(--accent); }
+body.fs-theme .speaker-role { color: #0d0f0a; }
+body.fs-theme .speaker-info p { color: #a7ab9b; }
+body.fs-theme .speaker-photo .ph-fallback { color: rgba(158,246,3,.40); }
+body.fs-theme .carousel-btn { background: #14170d; border-color: #3a4030; color: #e9ece3; }
+body.fs-theme .carousel-btn:hover { background: var(--accent); color: #0d0f0a; border-color: var(--accent); }
+
+body.fs-theme .btn-primary { background: var(--accent); color: #0d0f0a; }
+body.fs-theme .btn-primary:hover { background: #fff; color: #0d0f0a; }
+
+body.fs-theme .site-footer { background: #080a05; color: #7d8273; }
+body.fs-theme .site-footer a:hover { color: var(--accent); }
+body.fs-theme .footer-logo { color: #e9ece3; }
+body.fs-theme .footer-logo span { color: var(--accent); }
+body.fs-theme .footer-bottom { border-top-color: #20241a; color: #5f6457; }

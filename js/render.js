@@ -171,8 +171,10 @@
     var photo = s.img
       ? '<img src="' + esc(asset(s.img)) + '" alt="' + esc(p.name) + '" loading="lazy">'
       : '<div class="ph-fallback">' + esc(p.name.charAt(0)) + '</div>';
+    var roleTxt = isEn ? (s.roleEng || '') : (s.role || '');
+    var roleHtml = roleTxt ? '<span class="speaker-role">' + esc(roleTxt) + '</span>' : '';
     return '<article class="speaker-card" data-name="' + esc(s.kor.name) + '" role="button" tabindex="0">' +
-      '<div class="speaker-photo' + (s.noshape ? ' no-shape' : '') + '">' + photo + '</div>' +
+      '<div class="speaker-photo' + (s.noshape ? ' no-shape' : '') + '">' + photo + roleHtml + '</div>' +
       '<div class="speaker-info"><h3>' + esc(p.name) + '</h3><p>' + esc(p.title) + '</p></div>' +
       '</article>';
   }
@@ -227,7 +229,7 @@
     rootEl.querySelectorAll('.speaker-card[data-name]').forEach(function (card) {
       var name = card.getAttribute('data-name');
       var s = null;
-      C.speakers.forEach(function (x) { if (x.kor.name === name) s = x; });
+      (C.speakers || []).concat(C.futureStage || []).forEach(function (x) { if (x.kor.name === name) s = x; });
       if (!s) return;
       card.addEventListener('click', function () { openSpeakerModal(s); });
       card.addEventListener('keydown', function (e) {
@@ -236,15 +238,33 @@
     });
   }
 
-  // 연사 그리드를 가로 스크롤 캐러셀로 변환 (이전/다음 넘기기 버튼)
-  function makeCarousel(grid) {
+  // 연사 그리드를 가로 스크롤 캐러셀로 변환 (무한 루프 + 이전/다음 넘기기 버튼)
+  function makeCarousel(grid, opts) {
     if (!grid || grid.dataset.carousel) return;
+    opts = opts || {};
+    var loop = !!opts.loop;
     grid.dataset.carousel = '1';
     grid.classList.add('is-carousel');
     var wrap = document.createElement('div');
     wrap.className = 'speaker-carousel';
     grid.parentNode.insertBefore(wrap, grid);
     wrap.appendChild(grid);
+
+    var sets = 1, nOriginals = 0;
+    if (loop) {
+      var originals = Array.prototype.slice.call(grid.children);
+      nOriginals = originals.length;
+      // 앞뒤로 자연스럽게 순환하도록 동일 세트를 2벌 더 복제(총 3벌)
+      for (var c = 0; c < 2; c++) {
+        originals.forEach(function (node) {
+          var cl = node.cloneNode(true);
+          cl.setAttribute('aria-hidden', 'true');
+          cl.setAttribute('tabindex', '-1');
+          grid.appendChild(cl);
+        });
+      }
+      sets = 3;
+    }
 
     var prev = document.createElement('button');
     prev.type = 'button'; prev.className = 'carousel-btn prev';
@@ -254,26 +274,51 @@
     next.setAttribute('aria-label', isEn ? 'Next speakers' : '다음 연사'); next.innerHTML = '›';
     wrap.appendChild(prev); wrap.appendChild(next);
 
-    function step() {
+    function metrics() {
       var card = grid.querySelector('.speaker-card');
       var w = card ? card.getBoundingClientRect().width : 220;
       var gap = parseFloat(getComputedStyle(grid).columnGap || getComputedStyle(grid).gap) || 24;
-      var per = Math.max(1, Math.floor(grid.clientWidth / (w + gap)) - 1);
-      return (w + gap) * per;
+      return { unit: w + gap };
+    }
+    function oneSet() { return metrics().unit * nOriginals; }
+    function setLeft(x) {
+      var b = grid.style.scrollBehavior; grid.style.scrollBehavior = 'auto';
+      grid.scrollLeft = x; grid.style.scrollBehavior = b;
+    }
+    function step() {
+      var unit = metrics().unit;
+      var per = Math.max(1, Math.floor(grid.clientWidth / unit) - 1);
+      return unit * per;
     }
     prev.addEventListener('click', function () { grid.scrollBy({ left: -step(), behavior: 'smooth' }); });
     next.addEventListener('click', function () { grid.scrollBy({ left: step(), behavior: 'smooth' }); });
 
-    function update() {
-      var noScroll = grid.scrollWidth <= grid.clientWidth + 4;
-      prev.style.display = next.style.display = noScroll ? 'none' : 'flex';
-      var max = grid.scrollWidth - grid.clientWidth - 2;
-      prev.disabled = grid.scrollLeft <= 2;
-      next.disabled = grid.scrollLeft >= max;
+    if (loop) {
+      var norming = false;
+      grid.addEventListener('scroll', function () {
+        if (norming) return;
+        var S = oneSet();
+        if (S <= 0) return;
+        if (grid.scrollLeft >= 2 * S) { norming = true; setLeft(grid.scrollLeft - S); norming = false; }
+        else if (grid.scrollLeft < S) { norming = true; setLeft(grid.scrollLeft + S); norming = false; }
+      }, { passive: true });
+      setTimeout(function () { setLeft(oneSet()); }, 60);
+      window.addEventListener('resize', function () {
+        var S = oneSet();
+        if (grid.scrollLeft < S || grid.scrollLeft >= 2 * S) setLeft(S);
+      });
+    } else {
+      var update = function () {
+        var noScroll = grid.scrollWidth <= grid.clientWidth + 4;
+        prev.style.display = next.style.display = noScroll ? 'none' : 'flex';
+        var max = grid.scrollWidth - grid.clientWidth - 2;
+        prev.disabled = grid.scrollLeft <= 2;
+        next.disabled = grid.scrollLeft >= max;
+      };
+      grid.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      setTimeout(update, 80);
     }
-    grid.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    setTimeout(update, 80);
   }
 
   var spFull = document.getElementById('speakers-root');
@@ -285,16 +330,23 @@
       (isEn ? 'More speakers to be announced' : '추가 연사가 공개될 예정입니다') +
       '</p></div></article>';
     spFull.innerHTML = full;
+    makeCarousel(spFull, { loop: true });
     bindSpeakerClicks(spFull);
-    makeCarousel(spFull);
   }
   var spFeat = document.getElementById('speakers-featured');
   if (spFeat && C.speakers) {
-    var feat = C.speakers.filter(function (s) { return s.featured; });
-    if (feat.length === 0) feat = C.speakers.slice(0, 6);
-    spFeat.innerHTML = feat.slice(0, 6).map(speakerCard).join('');
+    // 홈에서도 전체 연사를 무한 루프로 보여준다
+    spFeat.innerHTML = C.speakers.map(speakerCard).join('');
+    makeCarousel(spFeat, { loop: true });
     bindSpeakerClicks(spFeat);
-    makeCarousel(spFeat);
+  }
+
+  // Future Stage(피오니홀) 연사
+  var fsRoot = document.getElementById('futurestage-speakers');
+  if (fsRoot && C.futureStage) {
+    fsRoot.innerHTML = C.futureStage.map(speakerCard).join('');
+    makeCarousel(fsRoot, { loop: true });
+    bindSpeakerClicks(fsRoot);
   }
 
   /* ---------- 4. 아카이빙 (역대 행사) ---------- */
