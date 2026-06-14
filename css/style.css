@@ -105,6 +105,8 @@ ul { list-style: none; }
   transition: background .2s;
 }
 .btn-cta:hover { background: var(--accent); }
+/* 모든 '참가 문의' 메일 버튼 숨김 (배너 하단 포함, 사전등록 버튼은 제외) */
+a.btn-primary[href^="mailto:"] { display: none; }
 
 /* mobile nav */
 .nav-toggle {
