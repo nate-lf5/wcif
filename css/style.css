@@ -97,6 +97,7 @@ ul { list-style: none; }
 .lang-switch b { color: var(--accent); }
 .lang-switch a:hover { color: var(--ink); }
 .btn-cta {
+  display: none;
   background: var(--ink); color: var(--paper);
   padding: .55rem 1.3rem; border-radius: 999px;
   font-family: var(--display); font-size: .78rem; font-weight: 800;

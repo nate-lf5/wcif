@@ -174,7 +174,7 @@
     var roleTxt = isEn ? (s.roleEng || '') : (s.role || '');
     var roleHtml = roleTxt ? '<span class="speaker-role">' + esc(roleTxt) + '</span>' : '';
     return '<article class="speaker-card" data-name="' + esc(s.kor.name) + '" role="button" tabindex="0">' +
-      '<div class="speaker-photo' + (s.noshape ? ' no-shape' : '') + '">' + photo + roleHtml + '</div>' +
+      '<div class="speaker-photo' + (s.noshape ? ' no-shape' : '') + '">' + photo + '</div>' +
       '<div class="speaker-info"><h3>' + esc(p.name) + '</h3><p>' + esc(p.title) + '</p></div>' +
       '</article>';
   }
