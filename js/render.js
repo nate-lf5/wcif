@@ -274,21 +274,23 @@
     next.setAttribute('aria-label', isEn ? 'Next speakers' : '다음 연사'); next.innerHTML = '›';
     wrap.appendChild(prev); wrap.appendChild(next);
 
-    function metrics() {
+    // 카드 폭은 고정이므로 한 번만 계산해 캐싱(스크롤 중 레이아웃 재계산 방지)
+    var unitCache = 0;
+    function recalc() {
       var card = grid.querySelector('.speaker-card');
       var w = card ? card.getBoundingClientRect().width : 220;
       var gap = parseFloat(getComputedStyle(grid).columnGap || getComputedStyle(grid).gap) || 24;
-      return { unit: w + gap };
+      unitCache = w + gap;
     }
-    function oneSet() { return metrics().unit * nOriginals; }
+    function oneSet() { return unitCache * nOriginals; }
     function setLeft(x) {
       var b = grid.style.scrollBehavior; grid.style.scrollBehavior = 'auto';
       grid.scrollLeft = x; grid.style.scrollBehavior = b;
     }
     function step() {
-      var unit = metrics().unit;
-      var per = Math.max(1, Math.floor(grid.clientWidth / unit) - 1);
-      return unit * per;
+      if (!unitCache) recalc();
+      var per = Math.max(1, Math.floor(grid.clientWidth / unitCache) - 1);
+      return unitCache * per;
     }
     prev.addEventListener('click', function () { grid.scrollBy({ left: -step(), behavior: 'smooth' }); });
     next.addEventListener('click', function () { grid.scrollBy({ left: step(), behavior: 'smooth' }); });
@@ -296,15 +298,14 @@
     if (loop) {
       var norming = false;
       grid.addEventListener('scroll', function () {
-        if (norming) return;
-        var S = oneSet();
-        if (S <= 0) return;
+        if (norming || !unitCache) return;
+        var S = unitCache * nOriginals;
         if (grid.scrollLeft >= 2 * S) { norming = true; setLeft(grid.scrollLeft - S); norming = false; }
         else if (grid.scrollLeft < S) { norming = true; setLeft(grid.scrollLeft + S); norming = false; }
       }, { passive: true });
-      setTimeout(function () { setLeft(oneSet()); }, 60);
+      setTimeout(function () { recalc(); setLeft(oneSet()); }, 60);
       window.addEventListener('resize', function () {
-        var S = oneSet();
+        recalc(); var S = oneSet();
         if (grid.scrollLeft < S || grid.scrollLeft >= 2 * S) setLeft(S);
       });
     } else {

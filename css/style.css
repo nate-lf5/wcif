@@ -946,6 +946,17 @@ body.fs-theme .section-desc { color: #a7ab9b; }
 
 /* Future Stage: 메인과 동일하게 완성형 카드 이미지(초록) 사용 */
 body.fs-theme .speaker-role { color: #0d0f0a; }
+/* Future Stage 연사 팝업: 다크 배경 + 밝은 글자 */
+body.fs-theme .sp-modal { background: #14170d; border-color: #2b2f22; }
+body.fs-theme .sp-modal-close { background: #14170d; border-color: #3a4030; color: #e9ece3; }
+body.fs-theme .sp-modal-close:hover { background: var(--accent); color: #0d0f0a; border-color: var(--accent); }
+body.fs-theme .sp-modal-text h3 { color: #e9ece3; }
+body.fs-theme .sp-modal-title { color: #a7ab9b; }
+body.fs-theme .sp-modal-bio { color: #c8ccbe; }
+body.fs-theme .sp-modal-links { border-top-color: #2b2f22; }
+body.fs-theme .sp-modal-links-label { color: #8f9484; }
+body.fs-theme .sp-modal-links a { color: #e9ece3; border-bottom-color: #2b2f22; }
+body.fs-theme .sp-modal-links a:hover { color: var(--accent); }
 body.fs-theme .speaker-info p { color: #a7ab9b; }
 body.fs-theme .speaker-photo .ph-fallback { color: rgba(13,15,10,.55); }
 body.fs-theme .carousel-btn { background: #14170d; border-color: #3a4030; color: #e9ece3; }
