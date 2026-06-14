@@ -320,6 +320,22 @@
       window.addEventListener('resize', update);
       setTimeout(update, 80);
     }
+
+    // 자동 스크롤(좌→우, 마퀴): 버튼 숨김, 마우스 올리면 일시정지
+    if (loop && opts.auto) {
+      prev.style.display = next.style.display = 'none';
+      grid.style.scrollBehavior = 'auto';
+      var paused = false;
+      function tick() {
+        if (!paused && unitCache) grid.scrollLeft += 0.5;
+        requestAnimationFrame(tick);
+      }
+      grid.addEventListener('mouseenter', function () { paused = true; });
+      grid.addEventListener('mouseleave', function () { paused = false; });
+      grid.addEventListener('touchstart', function () { paused = true; }, { passive: true });
+      grid.addEventListener('touchend', function () { setTimeout(function () { paused = false; }, 2000); });
+      setTimeout(function () { recalc(); requestAnimationFrame(tick); }, 120);
+    }
   }
 
   var spFull = document.getElementById('speakers-root');
@@ -337,7 +353,7 @@
   if (spFeat && C.speakers) {
     // 홈에서도 전체 연사를 무한 루프로 보여준다
     spFeat.innerHTML = C.speakers.map(speakerCard).join('');
-    makeCarousel(spFeat, { loop: true });
+    makeCarousel(spFeat, { loop: true, auto: true });
     bindSpeakerClicks(spFeat);
   }
 
@@ -347,6 +363,35 @@
     fsRoot.innerHTML = C.futureStage.map(speakerCard).join('');
     makeCarousel(fsRoot, { loop: true });
     bindSpeakerClicks(fsRoot);
+  }
+
+  // Future Stage 프로그램(세션 구성)
+  var fsProg = document.getElementById('fs-program-root');
+  if (fsProg && C.futureStageProgram) {
+    var fsMap = {};
+    (C.futureStage || []).forEach(function (s) { fsMap[s.kor.name] = s; });
+    var fsPerson = function (name, role) {
+      var s = fsMap[name], p = s ? (s[L] || s.kor) : null;
+      var nm = p ? p.name : name, org = p ? p.title : '';
+      return '<li><span class="fsp-role">' + esc(role) + '</span>' +
+        '<span class="fsp-name">' + esc(nm) + '</span>' +
+        (org ? '<span class="fsp-org">' + esc(org) + '</span>' : '') + '</li>';
+    };
+    var hostL = isEn ? 'Host' : '호스트', panelL = isEn ? 'Panel' : '패널',
+        tentL = isEn ? '(tentative)' : '(가제)', tbaL = isEn ? 'Second Announcement' : '추가 공개 예정';
+    var ph = '';
+    C.futureStageProgram.forEach(function (ss) {
+      ph += '<div class="fs-session">' +
+        '<div class="fs-session-bar"><span class="fs-session-no">Session ' + ss.no + '</span>' +
+        '<span class="fs-session-cat">' + esc(ss.cat) + '</span></div>' +
+        '<div class="fs-session-topic">' + esc(isEn ? ss.eng : ss.kor) + ' <em>' + tentL + '</em></div>' +
+        '<ul class="fs-session-list">' +
+          fsPerson(ss.host, hostL) +
+          ss.panel.map(function (n) { return fsPerson(n, panelL); }).join('') +
+          '<li><span class="fsp-role">' + panelL + '</span><span class="fsp-name fsp-tba">' + tbaL + '</span></li>' +
+        '</ul></div>';
+    });
+    fsProg.innerHTML = ph;
   }
 
   /* ---------- 4. 아카이빙 (역대 행사) ---------- */

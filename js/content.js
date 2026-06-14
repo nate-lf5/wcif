@@ -148,13 +148,20 @@ window.WCIF_CONTENT = {
     { "featured": false, "img": "images/speakers/card/jung-juhee.webp", "role": "호스트", "roleEng": "Host", "kor": { "name": "정주희", "title": "기후캐스터 크리에이터" }, "eng": { "name": "Juhee Jung", "title": "Creator, climate caster" } },
     { "featured": false, "img": "images/speakers/card/lee-boyoung.webp", "role": "패널", "roleEng": "Panel", "kor": { "name": "이보영", "title": "워크모어 운영총괄" }, "eng": { "name": "Boyoung Lee", "title": "COO, WORKMORE" } },
     { "featured": false, "img": "images/speakers/card/agon.webp", "role": "패널", "roleEng": "Panel", "kor": { "name": "아곤", "title": "포뮬라랩스 대표" }, "eng": { "name": "Agon", "title": "CEO, Formula Labs" } },
-    { "featured": false, "img": "images/speakers/card/lee-jungwoo-fs.webp", "role": "호스트", "roleEng": "Host", "kor": { "name": "이정우", "title": "(주)써클커넥션 대표이사" }, "eng": { "name": "Jungwoo Lee", "title": "CEO, Circle Connection" } },
+    { "featured": false, "img": "images/speakers/card/lee-jungwoo-fs.webp", "role": "호스트", "roleEng": "Host", "kor": { "name": "이정우", "title": "(주)써클커넥션 대표이사" }, "eng": { "name": "Nathan Lee", "title": "CEO, Circle Connection" } },
     { "featured": false, "img": "images/speakers/card/an-jisung.webp", "role": "패널", "roleEng": "Panel", "kor": { "name": "안지성", "title": "악수 대표" }, "eng": { "name": "Jisung An", "title": "CEO, AXOO" } },
     { "featured": false, "img": "images/speakers/card/choi-yerim.webp", "role": "패널", "roleEng": "Panel", "kor": { "name": "최예림", "title": "예슨트 도슨트" }, "eng": { "name": "Yerim Choi", "title": "Art Docent, Yesent" } },
     { "featured": false, "img": "images/speakers/card/kim-yura.webp", "role": "호스트", "roleEng": "Host", "kor": { "name": "김유라", "title": "웨이비즘 디자이너" }, "eng": { "name": "Yura Kim", "title": "Designer, wavismm" } },
     { "featured": false, "img": "images/speakers/card/yeo-intaek.webp", "role": "패널", "roleEng": "Panel", "kor": { "name": "여인택", "title": "피치스 대표" }, "eng": { "name": "In Taek Yeo", "title": "CEO, Peaches Group Inc" } },
     { "featured": false, "img": "images/speakers/card/jung-inmo.webp", "role": "패널", "roleEng": "Panel", "kor": { "name": "정인모", "title": "주식회사 사사사 대표" }, "eng": { "name": "Inmo Chung", "title": "CEO, SASASA Inc" } },
     { "featured": false, "img": "images/speakers/card/heo-yurim.webp", "role": "호스트", "roleEng": "Host", "kor": { "name": "허유림", "title": "아이즈 매거진 편집장" }, "eng": { "name": "Yurim Heu", "title": "Editor in Chief, eyesmag" } }
+  ],
+  "futureStageProgram": [
+    { "no": 1, "cat": "Entertainment", "kor": "팬덤을 형성하는 콘텐츠 IP", "eng": "Content IP that Builds Fandom", "host": "김경훈", "panel": ["백광현", "김미소"] },
+    { "no": 2, "cat": "ESG", "kor": "문화 속 지속 가능성", "eng": "Sustainability in Culture", "host": "정주희", "panel": ["곽재원", "장은석"] },
+    { "no": 3, "cat": "Tech", "kor": "기술이 만드는 문화 트렌드", "eng": "Cultural Trends Shaped by Technology", "host": "이정우", "panel": ["이보영", "아곤"] },
+    { "no": 4, "cat": "Art", "kor": "문화에 따라 변하는 예술", "eng": "Art that Evolves with Culture", "host": "김유라", "panel": ["안지성", "최예림"] },
+    { "no": 5, "cat": "Life Style", "kor": "따로 또 같이, 취향을 즐기는 방식", "eng": "Together yet Apart: Ways to Enjoy Taste", "host": "허유림", "panel": ["여인택", "정인모"] }
   ],
   "bios": {
     "이수만": { "kor": "SM엔터테인먼트를 설립해 H.O.T.부터 에스파에 이르는 스타들을 배출하며 K-pop 프로듀싱 시스템의 표준을 만든 프로듀서다. 현재는 글로벌 아티스트 육성을 위해 설립한 A2O엔터테인먼트의 키 프로듀서로 활동하며 '넥스트 한류'를 이끌고 있다. 세계문화산업포럼(WCIF)에는 제1회부터 기조연설자로 참여해 왔다.", "eng": "Lee Soo-man founded SM Entertainment and built the production system that shaped the K-pop industry, launching stars from H.O.T. to aespa. He now serves as Key Producer of A2O Entertainment and has delivered keynote speeches at WCIF since its first edition.", "links": [{ "title": "이수만, K팝 넘어 세계로 'A2O엔터' (이코노믹데일리)", "url": "https://www.economidaily.com/view/20250203082205660" }, { "title": "제1회 세계문화산업포럼 기조연설 (아시아투데이)", "url": "https://www.asiatoday.co.kr/view.php?key=20201028010016929" }] },

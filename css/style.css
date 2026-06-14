@@ -136,7 +136,6 @@ a.btn-primary[href^="mailto:"] { display: none; }
 }
 .kv-hero {
   width: 100%; display: block;
-  border: 1px solid var(--ink);
   box-shadow: 0 24px 60px rgba(16,20,43,.14);
 }
 .hero .container { position: relative; }
@@ -333,10 +332,9 @@ a.btn-primary[href^="mailto:"] { display: none; }
   display: flex; grid-template-columns: none;
   gap: 1.6rem; overflow-x: auto; scroll-snap-type: x mandatory;
   scroll-behavior: smooth; padding-bottom: 1.2rem;
-  -webkit-overflow-scrolling: touch; scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none;
 }
-.speaker-grid.is-carousel::-webkit-scrollbar { height: 6px; }
-.speaker-grid.is-carousel::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+.speaker-grid.is-carousel::-webkit-scrollbar { display: none; }
 .speaker-grid.is-carousel > .speaker-card {
   flex: 0 0 auto; width: min(72vw, 220px); scroll-snap-align: start;
 }
@@ -970,3 +968,28 @@ body.fs-theme .site-footer a:hover { color: var(--accent); }
 body.fs-theme .footer-logo { color: #e9ece3; }
 body.fs-theme .footer-logo span { color: var(--accent); }
 body.fs-theme .footer-bottom { border-top-color: #20241a; color: #5f6457; }
+
+/* Future Stage 프로그램 세션 */
+.fs-session { border-top: 1px solid #2b2f22; padding: 1.7rem 0; }
+.fs-session:first-child { border-top: 0; padding-top: .4rem; }
+.fs-session-bar { display: flex; align-items: center; gap: .9rem; flex-wrap: wrap; }
+.fs-session-no {
+  font-family: var(--display); font-stretch: 116%; font-weight: 900;
+  font-size: .76rem; letter-spacing: .1em; text-transform: uppercase;
+  background: var(--neon); color: #0d0f0a; padding: .25rem .6rem;
+}
+.fs-session-cat {
+  font-family: var(--display); font-stretch: 112%; font-weight: 800;
+  font-size: 1.15rem; letter-spacing: .04em; text-transform: uppercase; color: #e9ece3;
+}
+.fs-session-topic { margin-top: .85rem; font-size: 1.15rem; font-weight: 800; word-break: keep-all; color: #e9ece3; }
+.fs-session-topic em { font-style: normal; font-weight: 600; color: #8f9484; font-size: .85rem; margin-left: .2rem; }
+.fs-session-list { margin-top: 1rem; display: grid; gap: .55rem; }
+.fs-session-list li { display: flex; align-items: baseline; gap: .8rem; flex-wrap: wrap; font-size: .98rem; }
+.fsp-role {
+  font-family: var(--display); font-stretch: 110%; font-weight: 800;
+  font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--neon); min-width: 46px;
+}
+.fsp-name { font-weight: 800; color: #e9ece3; }
+.fsp-org { color: #a7ab9b; font-size: .9rem; }
+.fsp-tba { color: #8f9484; font-weight: 600; }
