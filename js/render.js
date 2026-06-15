@@ -27,7 +27,7 @@
       ]
     },
     {
-      label: { kor: '프로그램', eng: 'Program' }, href: 'program.html',
+      label: { kor: 'PROGRAM', eng: 'Program' }, href: 'program.html',
       children: [
         { label: { kor: '2026 WCIF', eng: '2026 WCIF' }, href: 'program.html' },
         { label: { kor: 'Future Stage', eng: 'Future Stage' }, href: 'future-stage.html' },
@@ -62,6 +62,28 @@
         '</div>';
     });
     navEl.innerHTML = html;
+  }
+
+  /* ---------- 0.1 서브내비 = LNB(현재 그룹) + 브레드크럼(우측) ---------- */
+  var subInner = document.querySelector('.subnav .subnav-inner');
+  if (subInner) {
+    var grp = null, curChild = null;
+    NAV.forEach(function (item) {
+      item.children.forEach(function (c) {
+        if (c.href.split('#')[0] === current) { grp = item; curChild = c; }
+      });
+      if (item.href.split('#')[0] === current && !grp) grp = item;
+    });
+    if (grp) {
+      var tabs = grp.children.map(function (c) {
+        var on = (c.href.split('#')[0] === current);
+        return '<a href="' + c.href + '"' + (on ? ' class="on"' : '') + '>' + esc(c.label[L]) + '</a>';
+      }).join('');
+      var crumb = 'Home <span>/</span> ' + esc(grp.label[L]) +
+        (curChild ? ' <span>/</span> ' + esc(curChild.label[L]) : '');
+      subInner.innerHTML = '<div class="subnav-tabs">' + tabs + '</div>' +
+        '<div class="subnav-crumb">' + crumb + '</div>';
+    }
   }
 
   // 푸터 퀵링크
@@ -292,8 +314,10 @@
       var per = Math.max(1, Math.floor(grid.clientWidth / unitCache) - 1);
       return unitCache * per;
     }
-    prev.addEventListener('click', function () { grid.scrollBy({ left: -step(), behavior: 'smooth' }); });
-    next.addEventListener('click', function () { grid.scrollBy({ left: step(), behavior: 'smooth' }); });
+    var paused = false, pauseT;
+    function pauseAuto() { paused = true; clearTimeout(pauseT); pauseT = setTimeout(function () { paused = false; }, 700); }
+    prev.addEventListener('click', function () { pauseAuto(); grid.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    next.addEventListener('click', function () { pauseAuto(); grid.scrollBy({ left: step(), behavior: 'smooth' }); });
 
     if (loop) {
       var norming = false;
@@ -323,10 +347,8 @@
 
     // 자동 스크롤(좌→우, 마퀴): 버튼 숨김, 마우스 올리면 일시정지
     if (loop && opts.auto) {
-      prev.style.display = next.style.display = 'none';
       grid.style.scrollBehavior = 'auto';
       grid.style.scrollSnapType = 'none';
-      var paused = false;
       function tick() {
         if (!paused && unitCache) grid.scrollLeft += 0.5;
         requestAnimationFrame(tick);
@@ -347,7 +369,7 @@
       (isEn ? 'More speakers to be announced' : '추가 연사가 공개될 예정입니다') +
       '</p></div></article>';
     spFull.innerHTML = full;
-    makeCarousel(spFull, { loop: true });
+    makeCarousel(spFull, { loop: true, auto: true });
     bindSpeakerClicks(spFull);
   }
   var spFeat = document.getElementById('speakers-featured');
@@ -453,9 +475,9 @@
         '<div class="section-label">' + (isEn ? 'Videos' : '영상') + '</div>' +
         '<div class="video-grid">' +
         entry.videos.map(function (v) {
-          return '<div class="video-item"><div class="video-frame">' +
-            '<iframe src="https://www.youtube-nocookie.com/embed/' + esc(v.id) + '" title="' + esc(v.title) + '" loading="lazy" allowfullscreen></iframe>' +
-            '</div><p>' + esc(v.title) + '</p></div>';
+          return '<div class="video-item"><a class="video-frame" href="https://www.youtube.com/watch?v=' + esc(v.id) + '" target="_blank" rel="noopener">' +
+            '<img src="https://img.youtube.com/vi/' + esc(v.id) + '/hqdefault.jpg" alt="' + esc(v.title) + '" loading="lazy">' +
+            '<span class="video-play" aria-hidden="true"></span></a><p>' + esc(v.title) + '</p></div>';
         }).join('') +
         '</div></div></section>';
     }

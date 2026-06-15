@@ -200,6 +200,14 @@ window.WCIF_CONTENT = {
   },
   "archive": [
     {
+      "year": "2025", "edition": "6th", "poster": "",
+      "kor": { "title": "Culture-based Co-operations, Enhancing the SDG's", "desc": "제6회 WCIF는 'Culture-based Co-operations, Enhancing the SDG's' 슬로건 아래, 한·일 수교 60주년을 기념한 문화·기술 협력과 글로벌녹색성장(Global Green Growth)을 두 축으로 진행되었습니다. 10월 29일(수) 웨스틴조선 서울 라일락홀에서, '한·일 문화기술 협력 - 문화산업 및 AI 서밋'(트랙1)과 GGGI 공동주최 '파리협정 10주년 문화의 밤'(트랙2)이 열렸습니다." },
+      "eng": { "title": "Culture-based Co-operations, Enhancing the SDG's", "desc": "The 6th WCIF, held under the slogan 'Culture-based Co-operations, Enhancing the SDG's,' centered on two pillars: cultural and technological cooperation marking the 60th anniversary of Korea-Japan diplomatic relations, and Global Green Growth. Held at the Westin Josun Seoul on October 29, it featured the Korea-Japan Culture & Technology Summit (Track 1) and, co-hosted with GGGI, a Cultural Night marking the 10th anniversary of the Paris Agreement (Track 2)." },
+      "speakers": { "kor": ["오부치 유코", "반기문", "주호영", "김상협", "이장우", "송승환", "김유원", "김용태", "이영복", "윤민호", "장사익", "KARD"], "eng": ["Obuchi Yuko", "Ban Ki-moon", "Joo Ho-young", "Kim Sang-hyup", "Lee Jang-woo", "Song Seung-whan", "Kim Yu-won", "Kim Yong-tae", "Lee Young-bok", "Yoon Min-ho", "Jang Sa-ik", "KARD"] },
+      "videos": [],
+      "photos": []
+    },
+    {
       "year": "2024", "edition": "5th", "poster": "",
       "kor": { "title": "문화와 기술의 융합으로 열어가는 미래교육", "desc": "제5회 WCIF는 AI시대 새로이 열리는 미래기회들과 교육의 미래를 조망함으로써 인재육성과 교육 방향에 관한 전략적 시사점을 도출했습니다. 문화, 콘텐츠, 과학, 기술 등 다양한 분야간 소통과 협력을 통해 WCIF의 비전인 '문화로 함께 하는 세상' Culture Universe를 이루어나가는 데 기여했습니다." },
       "eng": { "title": "Future Education through the Fusion of Culture and Technology", "desc": "The 5th WCIF examined the new opportunities of the AI era and the future of education, drawing strategic insights on talent development through dialogue across culture, content, science, and technology." },
