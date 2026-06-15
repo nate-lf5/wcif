@@ -6,28 +6,28 @@
 window.WCIF_CONTENT = {
   "popup": {
     "enabled": true,
-    "url": "index.html#location",
+    "url": "hackathon.html",
     "kor": {
-      "label": "Notice",
-      "title": "오시는 길 안내",
+      "label": "Hackathon",
+      "title": "해커톤 참가자 모집",
       "lines": [
-        "행사장 · 호텔수성 (대구 수성구 용학로 106-7)",
-        "일시 · 2026.07.02(목) - 07.03(금)",
-        "원활한 입장을 위해 사전등록 후 방문을 권장드립니다."
+        "하이프크래프트 · WCIF 문화 해커톤",
+        "모집 · 2026.06.16(화) ~ 06.19(금) 14:00",
+        "대구·수성구의 유휴 공간을 문화로 되살리는 청년 아이디어 경진대회 (선착순 10팀)"
       ],
-      "btn": "지도에서 위치 보기",
+      "btn": "해커톤 신청 안내 보기",
       "hide": "오늘 하루 보지 않기",
       "close": "닫기"
     },
     "eng": {
-      "label": "Notice",
-      "title": "Getting to WCIF 2026",
+      "label": "Hackathon",
+      "title": "Hackathon Open Call",
       "lines": [
-        "Venue · Hotel Susung (Yonghak-ro 106-7, Suseong-gu, Daegu)",
-        "Dates · July 2 (Thu) - 3 (Fri), 2026",
-        "Pre-registration is recommended for smooth entry."
+        "Hypercraft · WCIF Culture Hackathon",
+        "Applications · Jun 16 (Tue) – Jun 19 (Fri), 2026, 14:00",
+        "An idea competition reviving idle spaces in Daegu & Suseong-gu through culture (first-come, 10 teams)"
       ],
-      "btn": "View on Map",
+      "btn": "View Hackathon Details",
       "hide": "Don't show again today",
       "close": "Close"
     }
@@ -142,9 +142,11 @@ window.WCIF_CONTENT = {
   "futureStage": [
     { "featured": false, "img": "images/speakers/card/baek-kwanghyun.webp", "role": "패널", "roleEng": "Panel", "kor": { "name": "백광현", "title": "모드하우스 부대표" }, "eng": { "name": "Kwang Hyun Baek", "title": "Co-founder, Modhaus" } },
     { "featured": false, "img": "images/speakers/card/kim-miso.webp", "role": "패널", "roleEng": "Panel", "kor": { "name": "김미소", "title": "DMZ 피스트레인 총감독" }, "eng": { "name": "Miso Kim", "title": "Executive Director, DMZ Peace Train Music Festival" } },
+    { "featured": false, "img": "images/speakers/card/jin-sol.webp", "role": "패널", "roleEng": "Panel", "kor": { "name": "진솔", "title": "(사)국제소셜인플루언서협회 이사" }, "eng": { "name": "Jin Sol", "title": "Director, Int'l Social Influencer Association" } },
     { "featured": false, "img": "images/speakers/card/kim-kyunghoon.webp", "role": "호스트", "roleEng": "Host", "kor": { "name": "김경훈", "title": "MC 훈 전문 사회자" }, "eng": { "name": "Kyung Hun Kim", "title": "Professional MC & Reporter, MC HUN" } },
     { "featured": false, "img": "images/speakers/card/gwak-jaewon.webp", "role": "패널", "roleEng": "Panel", "kor": { "name": "곽재원", "title": "트래쉬버스터즈 대표" }, "eng": { "name": "Jae Won Gwak", "title": "CEO, Trash Busters" } },
     { "featured": false, "img": "images/speakers/card/jang-eunseok.webp", "role": "패널", "roleEng": "Panel", "kor": { "name": "장은석", "title": "수무 대표" }, "eng": { "name": "Eunserk Chang", "title": "Principal Designer, SUMU" } },
+    { "featured": false, "img": "images/speakers/card/choi-jaesik.webp", "role": "패널", "roleEng": "Panel", "kor": { "name": "최재식", "title": "로우리트콜렉티브 대표" }, "eng": { "name": "Jae Sik Choi", "title": "CEO, Lowlit Collective" } },
     { "featured": false, "img": "images/speakers/card/jung-juhee.webp", "role": "호스트", "roleEng": "Host", "kor": { "name": "정주희", "title": "기후캐스터 크리에이터" }, "eng": { "name": "Juhee Jung", "title": "Creator, climate caster" } },
     { "featured": false, "img": "images/speakers/card/lee-boyoung.webp", "role": "패널", "roleEng": "Panel", "kor": { "name": "이보영", "title": "워크모어 운영총괄" }, "eng": { "name": "Boyoung Lee", "title": "COO, WORKMORE" } },
     { "featured": false, "img": "images/speakers/card/agon.webp", "role": "패널", "roleEng": "Panel", "kor": { "name": "아곤", "title": "포뮬라랩스 대표" }, "eng": { "name": "Agon", "title": "CEO, Formula Labs" } },
