@@ -1016,3 +1016,16 @@ body.fs-theme .footer-bottom { border-top-color: #20241a; color: #5f6457; }
   .hack-grid { grid-template-columns: 1fr; }
   .hack-dl div { grid-template-columns: 110px 1fr; }
 }
+
+/* Hackathon 테마: 포스터 오렌지 컬러 (강조색 전환) */
+body.hack-theme {
+  --accent: #ff4a1a;
+  --accent-dark: #d6360c;
+  --accent-soft: #ffd9cb;
+}
+body.hack-theme .page-hero::before {
+  background:
+    radial-gradient(ellipse 40% 45% at 85% 10%, rgba(255,210,193,.5), transparent 65%),
+    radial-gradient(ellipse 35% 40% at 10% 90%, rgba(214,54,12,.5), transparent 65%);
+}
+body.hack-theme ::selection { background: var(--accent); color: #fff; }
