@@ -156,6 +156,7 @@ window.WCIF_CONTENT = {
     { "featured": false, "img": "images/speakers/card/kim-yura.webp", "role": "호스트", "roleEng": "Host", "kor": { "name": "김유라", "title": "웨이비즘 디자이너" }, "eng": { "name": "Yura Kim", "title": "Designer, wavismm" } },
     { "featured": false, "img": "images/speakers/card/yeo-intaek.webp", "role": "패널", "roleEng": "Panel", "kor": { "name": "여인택", "title": "피치스 대표" }, "eng": { "name": "In Taek Yeo", "title": "CEO, Peaches Group Inc" } },
     { "featured": false, "img": "images/speakers/card/jung-inmo.webp", "role": "패널", "roleEng": "Panel", "kor": { "name": "정인모", "title": "주식회사 사사사 대표" }, "eng": { "name": "Inmo Chung", "title": "CEO, SASASA Inc" } },
+    { "featured": false, "img": "images/speakers/card/jung-minkyu.webp", "role": "패널", "roleEng": "Panel", "kor": { "name": "정민규", "title": "하이어코퍼레이션 부사장" }, "eng": { "name": "Minkyu Jeong", "title": "Vice President, Higher Corporation" } },
     { "featured": false, "img": "images/speakers/card/heo-yurim.webp", "role": "호스트", "roleEng": "Host", "kor": { "name": "허유림", "title": "아이즈 매거진 편집장" }, "eng": { "name": "Yurim Heu", "title": "Editor in Chief, eyesmag" } }
   ],
   "futureStageProgram": [
