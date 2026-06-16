@@ -126,7 +126,7 @@ a.btn-primary[href^="mailto:"] { display: none; }
 /* ---------- Hero (dark, full-bleed) ---------- */
 .hero {
   display: flex; flex-direction: column; justify-content: center;
-  padding: 200px 0 80px;
+  padding: 110px 0 80px;
   position: relative;
   background:
     radial-gradient(ellipse 50% 45% at 88% 6%, rgba(37,71,229,.14), transparent 65%),
@@ -158,7 +158,7 @@ a.btn-primary[href^="mailto:"] { display: none; }
   font-size: .95rem; color: var(--ink-soft);
 }
 .hero-meta-text { display: flex; flex-wrap: wrap; gap: .6rem 2.5rem; align-items: baseline; }
-.hero-cta { flex-shrink: 0; }
+.hero-cta { flex-shrink: 0; border-radius: 0; }
 .hero-meta .date {
   font-family: var(--display); font-stretch: 120%; font-weight: 800;
   font-size: clamp(1rem, 2.2vw, 1.45rem); letter-spacing: .02em;
@@ -1092,3 +1092,24 @@ body.hack-theme .page-hero::before {
     radial-gradient(ellipse 35% 40% at 10% 90%, rgba(214,54,12,.5), transparent 65%);
 }
 body.hack-theme ::selection { background: var(--accent); color: #fff; }
+
+/* ============================================
+   모바일 반응형 보정
+   ============================================ */
+/* 1. 서브네비: 모바일에서 브레드크럼을 탭 위로 이동 */
+@media (max-width: 760px) {
+  .subnav-inner { flex-direction: column; align-items: stretch; gap: .55rem; }
+  .subnav-crumb { order: -1; font-size: .8rem; }
+  .subnav-tabs { width: 100%; }
+}
+/* 2. 햄버거 GNB: 블랙 배경 + 흰색 폰트로 통일 (전 테마 공통) */
+@media (max-width: 960px) {
+  .main-nav { background: #0d0f0a; border-bottom-color: #000; }
+  .main-nav a, .main-nav .nav-top { color: #e9ece3; }
+  .main-nav a.active, .main-nav a.sub-on, .main-nav .nav-top.active { color: var(--accent); }
+  .main-nav .nav-item .sub,
+  body.fs-theme .main-nav .nav-item .sub,
+  body.hack-theme .main-nav .nav-item .sub { background: transparent; border: 0; box-shadow: none; }
+  .main-nav .nav-item .sub a { color: #b9bcb2; }
+  .main-nav .nav-item .sub a:hover { color: var(--accent); background: transparent; padding-left: .3rem; }
+}
