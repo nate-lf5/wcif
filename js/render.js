@@ -86,20 +86,23 @@
     }
   }
 
-  // 푸터 퀵링크
+  // 푸터: 메뉴 목록 삭제 + 소셜 아이콘(유튜브·인스타그램) 추가
+  var YT_ICON = '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>';
+  var IG_ICON = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg>';
   var footUl = document.querySelector('.site-footer .footer-grid ul');
   if (footUl) {
-    var fl = '';
-    NAV.forEach(function (item) {
-      item.children.forEach(function (c) {
-        fl += '<li><a href="' + c.href + '">' + esc(c.label[L]) + '</a></li>';
-      });
-    });
-    fl += '<li><a href="speakers.html">' + (isEn ? 'Speakers' : '초청연사') + '</a></li>';
-    footUl.innerHTML = fl;
-    footUl.style.columns = '2';
-    footUl.style.columnGap = '2.5rem';
+    var footCol = footUl.parentElement;
+    footCol.innerHTML =
+      '<div class="footer-social">' +
+        '<a href="https://www.youtube.com/@_wcif2893" target="_blank" rel="noopener" aria-label="YouTube">' + YT_ICON + '</a>' +
+        '<a href="https://www.instagram.com/wcif_world/" target="_blank" rel="noopener" aria-label="Instagram">' + IG_ICON + '</a>' +
+      '</div>';
   }
+
+  /* ---------- 0.4 복사·드래그 방지 ---------- */
+  ['contextmenu', 'copy', 'cut', 'dragstart', 'selectstart'].forEach(function (ev) {
+    document.addEventListener(ev, function (e) { e.preventDefault(); }, false);
+  });
 
   /* ---------- 0.5 공지 팝업 (메인 페이지 전용) ---------- */
   var isMain = !!document.querySelector('.hero');

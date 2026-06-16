@@ -25,6 +25,8 @@ body {
   background: var(--paper);
   line-height: 1.7;
   overflow-x: hidden;
+  -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+  -webkit-touch-callout: none;
   -webkit-font-smoothing: antialiased;
 }
 img { max-width: 100%; display: block; }
@@ -549,6 +551,15 @@ a.btn-primary[href^="mailto:"] { display: none; }
   font-family: var(--display); font-stretch: 110%; font-weight: 700;
   font-size: .8rem; letter-spacing: .1em; text-transform: uppercase;
 }
+.footer-social { display: flex; gap: .8rem; }
+.footer-social a {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 42px; height: 42px; border: 1px solid #3a3840; border-radius: 50%;
+  color: #bdbab2; transition: color .2s, border-color .2s;
+}
+.footer-social a:hover { color: var(--paper); border-color: var(--paper); }
+body.fs-theme .footer-social a:hover { color: var(--accent); border-color: var(--accent); }
+body.hack-theme .footer-social a:hover { color: var(--accent); border-color: var(--accent); }
 .footer-bottom {
   margin-top: 2.6rem; padding-top: 1.5rem; border-top: 1px solid #2a2830;
   display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;

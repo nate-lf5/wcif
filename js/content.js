@@ -13,7 +13,7 @@ window.WCIF_CONTENT = {
       "lines": [
         "하이프크래프트 · WCIF 문화 해커톤",
         "모집 · 2026.06.16(화) ~ 06.19(금) 14:00",
-        "대구·수성구의 유휴 공간을 문화로 되살리는 청년 아이디어 경진대회 (선착순 10팀)"
+        "대구·수성구의 유휴 공간을 문화로 되살리는 청년 아이디어 경진대회"
       ],
       "btn": "해커톤 신청 안내 보기",
       "hide": "오늘 하루 보지 않기",
@@ -25,7 +25,7 @@ window.WCIF_CONTENT = {
       "lines": [
         "Hypercraft · WCIF Culture Hackathon",
         "Applications · Jun 16 (Tue) – Jun 19 (Fri), 2026, 14:00",
-        "An idea competition reviving idle spaces in Daegu & Suseong-gu through culture (first-come, 10 teams)"
+        "An idea competition reviving idle spaces in Daegu & Suseong-gu through culture"
       ],
       "btn": "View Hackathon Details",
       "hide": "Don't show again today",
@@ -159,11 +159,11 @@ window.WCIF_CONTENT = {
     { "featured": false, "img": "images/speakers/card/heo-yurim.webp", "role": "호스트", "roleEng": "Host", "kor": { "name": "허유림", "title": "아이즈 매거진 편집장" }, "eng": { "name": "Yurim Heu", "title": "Editor in Chief, eyesmag" } }
   ],
   "futureStageProgram": [
-    { "no": 1, "cat": "Entertainment", "kor": "팬덤을 형성하는 콘텐츠 IP", "eng": "Content IP that Builds Fandom", "host": "김경훈", "panel": ["백광현", "김미소"] },
-    { "no": 2, "cat": "ESG", "kor": "문화 속 지속 가능성", "eng": "Sustainability in Culture", "host": "정주희", "panel": ["곽재원", "장은석"] },
-    { "no": 3, "cat": "Tech", "kor": "기술이 만드는 문화 트렌드", "eng": "Cultural Trends Shaped by Technology", "host": "이정우", "panel": ["이보영", "아곤"] },
-    { "no": 4, "cat": "Art", "kor": "문화에 따라 변하는 예술", "eng": "Art that Evolves with Culture", "host": "김유라", "panel": ["안지성", "최예림"] },
-    { "no": 5, "cat": "Life Style", "kor": "따로 또 같이, 취향을 즐기는 방식", "eng": "Together yet Apart: Ways to Enjoy Taste", "host": "허유림", "panel": ["여인택", "정인모"] }
+    { "no": 1, "cat": "Entertainment", "kor": "초연결 시대의 엔터테인먼트: 팬덤, 페스티벌, 그리고 소셜 네트워크", "eng": "Entertainment in the Hyper-Connected Era: Fandom, Festivals, and Social Networks", "host": "김경훈", "panel": ["백광현", "김미소"] },
+    { "no": 2, "cat": "ESG", "kor": "지속가능한 멋(Sustainable Chic): 환경, 디자인과 라이프스타일이 되다", "eng": "Sustainable Chic: When the Environment Becomes Design and Lifestyle", "host": "정주희", "panel": ["곽재원", "장은석"] },
+    { "no": 3, "cat": "Tech", "kor": "Tech for Creators: 기술이 재정의하는 미래의 일과 창작 생태계", "eng": "Tech for Creators: Technology Redefining the Future of Work and Creation", "host": "이정우", "panel": ["이보영", "아곤"] },
+    { "no": 4, "cat": "Art", "kor": "예술의 일상화: 시각, 공간, 스토리텔링으로 문턱을 넘은 아트 씬", "eng": "Art in Everyday Life: An Art Scene Beyond the Threshold through Vision, Space, and Storytelling", "host": "김유라", "panel": ["안지성", "최예림"] },
+    { "no": 5, "cat": "Life Style", "kor": "Subculture to Mainstream: 마이너한 취향이 거대한 비즈니스가 될 때", "eng": "Subculture to Mainstream: When Niche Tastes Become Big Business", "host": "허유림", "panel": ["여인택", "정인모"] }
   ],
   "bios": {
     "이수만": { "kor": "SM엔터테인먼트를 설립해 H.O.T.부터 에스파에 이르는 스타들을 배출하며 K-pop 프로듀싱 시스템의 표준을 만든 프로듀서다. 현재는 글로벌 아티스트 육성을 위해 설립한 A2O엔터테인먼트의 키 프로듀서로 활동하며 '넥스트 한류'를 이끌고 있다. 세계문화산업포럼(WCIF)에는 제1회부터 기조연설자로 참여해 왔다.", "eng": "Lee Soo-man founded SM Entertainment and built the production system that shaped the K-pop industry, launching stars from H.O.T. to aespa. He now serves as Key Producer of A2O Entertainment and has delivered keynote speeches at WCIF since its first edition.", "links": [{ "title": "이수만, K팝 넘어 세계로 'A2O엔터' (이코노믹데일리)", "url": "https://www.economidaily.com/view/20250203082205660" }, { "title": "제1회 세계문화산업포럼 기조연설 (아시아투데이)", "url": "https://www.asiatoday.co.kr/view.php?key=20201028010016929" }] },
