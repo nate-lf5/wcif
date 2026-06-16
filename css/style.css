@@ -158,7 +158,7 @@ a.btn-primary[href^="mailto:"] { display: none; }
   font-size: .95rem; color: var(--ink-soft);
 }
 .hero-meta-text { display: flex; flex-wrap: wrap; gap: .6rem 2.5rem; align-items: baseline; }
-.hero-cta { flex-shrink: 0; border-radius: 0; }
+.hero-meta .hero-cta { flex-shrink: 0; border-radius: 0; }
 .hero-meta .date {
   font-family: var(--display); font-stretch: 120%; font-weight: 800;
   font-size: clamp(1rem, 2.2vw, 1.45rem); letter-spacing: .02em;

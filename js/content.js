@@ -52,21 +52,22 @@ window.WCIF_CONTENT = {
       "eng": { "tag": "DAY 1 · Jul 2", "title": "Track 1 · Culture-Based Urban Development Strategy" },
       "items": [
         { "time": "14:00-14:15", "kor": { "title": "리셉션", "who": "" }, "eng": { "title": "Reception", "who": "" } },
-        { "time": "14:15-14:30", "kor": { "title": "개회사 및 축사", "who": "이인선(국회의원), 김승수(국회의원)" }, "eng": { "title": "Opening & Congratulatory Remarks", "who": "Lee In-seon (Member of the National Assembly), Kim Seung-su (Member of the National Assembly)" } },
+        { "time": "14:15-14:30", "kor": { "title": "개회사 · 축사", "who": "개회사 이장우(세계문화산업포럼 의장) · 축사 이인선(대구 수성구 국회의원), 김승수(대구 북구 국회의원)" }, "eng": { "title": "Opening & Congratulatory Remarks", "who": "Opening Address: Lee Jang-woo (Chair, WCIF) · Congratulatory: Lee In-seon, Kim Seung-su (Members of the National Assembly)" } },
         { "time": "", "kor": { "title": "Session 1 · 도시 디자인", "who": "" }, "eng": { "title": "Session 1 · Urban Design", "who": "" } },
-        { "time": "14:30-14:45", "kor": { "title": "[기조연설] 아트뮤지엄시티 수성", "who": "존 홍(수성국제비엔날레 총감독)" }, "eng": { "title": "[Keynote] Art Museum City Suseong", "who": "John Hong (Artistic Director, Suseong International Biennale)" } },
+        { "time": "14:30-14:45", "kor": { "title": "[기조연설] 아트뮤지엄시티 수성", "who": "존 홍(서울대학교 건축학과 교수)" }, "eng": { "title": "[Keynote] Art Museum City Suseong", "who": "John Hong (Professor, Seoul National University)" } },
         { "time": "14:45-14:55", "kor": { "title": "[기조발표]", "who": "준야 이시가미(일본 건축가)" }, "eng": { "title": "[Keynote Presentation]", "who": "Junya Ishigami (Architect, Japan)" } },
         { "time": "14:55-15:05", "kor": { "title": "[기조발표]", "who": "믈라덴 야드리치(오스트리아 건축가)" }, "eng": { "title": "[Keynote Presentation]", "who": "Mladen Jadric (Architect, Austria)" } },
         { "time": "15:05-15:15", "kor": { "title": "[발제] 공간디자인과 도시발전의 미래", "who": "김영섭(건축가)" }, "eng": { "title": "[Presentation] Spatial Design and the Future of Urban Development", "who": "Kim Young-sub (Architect)" } },
-        { "time": "15:15-15:55", "kor": { "title": "[대담] 도시를 디자인하는 문화의 힘", "who": "모더레이터 김영섭(건축가) · 김홍근(건축가), 전인건(간송미술관 관장), 존 홍(수성국제비엔날레 총감독)" }, "eng": { "title": "[Panel] The Power of Culture in Designing Cities", "who": "Moderator Kim Young-sub · Kim Hong-geun (Architect), Jun In-kun (Director, Kansong Art Museum), John Hong" } },
+        { "time": "15:15-15:55", "kor": { "title": "[대담] 도시를 디자인하는 문화의 힘", "who": "모더레이터 김영섭(건축가) · 김홍근(건축가), 전인건(간송미술관 관장), 존 홍(서울대학교 건축학과 교수)" }, "eng": { "title": "[Panel] The Power of Culture in Designing Cities", "who": "Moderator Kim Young-sub · Kim Hong-geun (Architect), Jun In-kun (Director, Kansong Art Museum), John Hong" } },
         { "time": "", "kor": { "title": "Session 2 · 도시 브랜딩", "who": "" }, "eng": { "title": "Session 2 · City Branding", "who": "" } },
-        { "time": "15:55-16:10", "kor": { "title": "[기조연설] 문화기반의 도시 브랜딩", "who": "류재현(문화기획가)" }, "eng": { "title": "[Keynote] Culture-Based City Branding", "who": "Ryu Jae-hyun (Cultural Planner)" } },
-        { "time": "16:10-17:00", "kor": { "title": "[대담] K-로컬 브랜딩의 글로벌 성공 전략", "who": "모더레이터 서병기(문화평론가) · 류재현(문화기획가), 노희영((주)식음연구소 대표), 유정수(글로우서울 대표)" }, "eng": { "title": "[Panel] Global Success Strategies for K-Local Branding", "who": "Moderator Suh Byung-ki (Culture Critic) · Ryu Jae-hyun, Noh Hee-young (CEO, F&B Research Institute), Yu Jung-su (CEO, Glow Seoul)" } },
+        { "time": "15:55-16:10", "kor": { "title": "[기조연설] 문화기반의 도시 브랜딩", "who": "류재현(2026 세계문화유산축전 가야고분군 총감독)" }, "eng": { "title": "[Keynote] Culture-Based City Branding", "who": "Ryu Jae-hyun (Artistic Director, 2026 World Heritage Festival Gaya Tumuli)" } },
+        { "time": "16:10-17:00", "kor": { "title": "[대담] K-로컬 브랜딩의 글로벌 성공 전략", "who": "모더레이터 서병기(아이뉴스24 선임기자) · 류재현(2026 세계문화유산축전 가야고분군 총감독), 노희영(히노컨설팅펌 대표), 유정수(글로우서울 대표이사)" }, "eng": { "title": "[Panel] Global Success Strategies for K-Local Branding", "who": "Moderator Suh Byung-ki (Senior Writer, inews24) · Ryu Jae-hyun, Noh Hee-young (CEO, Hino Consulting Firm), Yu Jung-su (CEO, Glow Seoul)" } },
         { "time": "", "kor": { "title": "Session 3 · 도시 콘텐츠", "who": "" }, "eng": { "title": "Session 3 · Urban Content", "who": "" } },
         { "time": "17:00-17:50", "kor": { "title": "[대담] 도시콘텐츠의 새로운 엔진", "who": "모더레이터 이정우((주)써클커넥션 대표) · 최원석(프로젝트렌트 대표), 백아람(누리하우스 대표), 홍주석(어반플레이 대표)" }, "eng": { "title": "[Panel] New Engines of Urban Content", "who": "Moderator Lee Jung-woo (CEO, Circle Connection, Inc.) · Choi Won-suk (CEO, Project Rent), Baek A-ram (CEO, Nurihaus), Hong Joo-suk (CEO, Urbanplay)" } },
         { "time": "", "kor": { "title": "환영 만찬", "who": "" }, "eng": { "title": "Welcome Dinner", "who": "" } },
         { "time": "18:00-20:00", "kor": { "title": "환영사 및 축사", "who": "추경호(대구광역시장), 오부치 유코(일본 국회 중의원)" }, "eng": { "title": "Welcome & Congratulatory Remarks", "who": "Choo Kyung-ho (Mayor of Daegu), Yuko Obuchi (Member of the House of Representatives, Japan)" } },
-        { "time": "18:00-20:00", "kor": { "title": "7th WCIF AWARD", "who": "수상자: 이수만(A20엔터테인먼트 키 프로듀서)" }, "eng": { "title": "7th WCIF AWARD", "who": "Laureate: Lee Soo-man (Key Producer, A20 Entertainment)" } }
+        { "time": "18:00-20:00", "kor": { "title": "7th WCIF AWARD", "who": "수상자: 이수만(A2O엔터테인먼트 키 프로듀서)" }, "eng": { "title": "7th WCIF AWARD", "who": "Laureate: Lee Soo-man (Key Producer, A2O Entertainment)" } },
+        { "time": "18:00-20:00", "kor": { "title": "DIMF 20주년 기념공연", "who": "최민철(뮤지컬배우), 리사(뮤지컬배우)" }, "eng": { "title": "DIMF 20th Anniversary Performance", "who": "Choi Min-chul (Musical Actor), Lisa (Musical Actor)" } }
       ]
     },
     {
@@ -86,14 +87,16 @@ window.WCIF_CONTENT = {
       "kor": { "tag": "DAY 2 · 7.3(금) 오후", "title": "Track 2 · DIMF 20주년 기념 세션: K-뮤지컬의 미래" },
       "eng": { "tag": "DAY 2 · Jul 3 PM", "title": "Track 2 · DIMF 20th Anniversary Session: The Future of K-Musicals" },
       "items": [
+        { "time": "", "kor": { "title": "축하공연", "who": "한은빈(뮤지컬배우)" }, "eng": { "title": "Celebratory Performance", "who": "Han Eun-bin (Musical Actor)" } },
         { "time": "13:30-13:45", "kor": { "title": "[기조연설] 수상무대 소개", "who": "박윤진(오피스박김 대표)" }, "eng": { "title": "[Keynote] Introducing the Floating Stage", "who": "Park Yoon-jin (Principal, office PARKKIM)" } },
         { "time": "13:45-14:00", "kor": { "title": "[기조연설] 수상무대와 공연예술의 미래", "who": "배성혁(DIMF 집행위원장)" }, "eng": { "title": "[Keynote] The Floating Stage and the Future of Performing Arts", "who": "Bae Sung-hyuk (Executive Director, DIMF)" } },
-        { "time": "14:00-14:15", "kor": { "title": "발제", "who": "원종원(순천향대 공연영상학과 교수)" }, "eng": { "title": "Presentation", "who": "Won Jong-won (Professor, Soonchunhyang University)" } },
+        { "time": "14:00-14:15", "kor": { "title": "[발제]", "who": "원종원(순천향대학교 SCH미디어랩스대학 학장)" }, "eng": { "title": "[Presentation]", "who": "Won Jong-won (Dean, College of SCH Media Labs, Soonchunhyang University)" } },
         { "time": "14:15-14:50", "kor": { "title": "[대담] DIMF 20년 성과와 미래 비전", "who": "모더레이터 고희경(홍익대 공연예술대학원장) · 이성훈(쇼노트 대표), 오동욱(대구정책연구원 사회문화연구실장), 이용민((사)한국공연예술포럼 운영위원)" }, "eng": { "title": "[Panel] 20 Years of DIMF and Its Future Vision", "who": "Moderator Ko Hee-kyung (Dean, Graduate School of Performing Arts, Hongik University) · Lee Sung-hoon (CEO, SHOWNOTE), Oh Dong-wook (Daegu Policy Institute), Lee Yong-min (Korea Performing Arts Forum)" } },
-        { "time": "14:50-15:05", "kor": { "title": "발제", "who": "리차드 페이(중국 상하이문화광장 총재)" }, "eng": { "title": "Presentation", "who": "Richard Fei (President, Shanghai Culture Square, China)" } },
-        { "time": "15:05-16:00", "kor": { "title": "[대담] 세계 뮤지컬 시장의 흐름", "who": "모더레이터 고희경(홍익대 공연예술대학원장) · 르네 노리스(미국 STAND 예술/교육 디렉터), 오치 요이치(일본 마쓰야마 봇짱 대표), 이종규(한국뮤지컬협회 이사장), 안젤라권(글로벌문화교류위원회(GCC) 위원장)" }, "eng": { "title": "[Panel] Trends in the Global Musical Market", "who": "Moderator Ko Hee-kyung · Renne Norris (Artistic & Education Director, STAND), Yoichi Ochi (Botchan Theatre, Matsuyama), Lee Jong-kyu (Chairman, Korea Musical Theatre Association), Angela Kwon (Chair, GCC)" } },
+        { "time": "14:50-15:05", "kor": { "title": "[발제]", "who": "리차드 페이(중국 상하이문화광장 총괄 매니저)" }, "eng": { "title": "[Presentation]", "who": "Richard Fei (General Manager, Shanghai Culture Square, China)" } },
+        { "time": "15:05-16:00", "kor": { "title": "[대담] 세계 뮤지컬 시장의 흐름", "who": "모더레이터 고희경(홍익대 공연예술대학원장) · 르네 노리스(미국 STAND 예술/교육 디렉터), 오치 요이치(일본 마쓰야마 봇짱 대표), 이종규(한국뮤지컬협회 이사장), 권은정(글로벌문화교류위원회 위원장)" }, "eng": { "title": "[Panel] Trends in the Global Musical Market", "who": "Moderator Ko Hee-kyung · Renne Norris (Artistic & Education Director, STAND), Yoichi Ochi (Botchan Theatre, Matsuyama), Lee Jong-kyu (Chairman, Korea Musical Theatre Association), Angela Kwon (Chair, GCC)" } },
         { "time": "", "kor": { "title": "Closing Session", "who": "" }, "eng": { "title": "Closing Session", "who": "" } },
-        { "time": "16:00-16:30", "kor": { "title": "로컬 크리에이터 어워드 시상 및 폐회", "who": "송승환(PMC프러덕션 예술총감독)" }, "eng": { "title": "Local Creator Award & Closing", "who": "Song Seung-whan (Artistic Director, PMC Production)" } }
+        { "time": "16:00-16:20", "kor": { "title": "로컬 크리에이터 어워드 시상", "who": "" }, "eng": { "title": "Local Creator Award Ceremony", "who": "" } },
+        { "time": "16:20-16:30", "kor": { "title": "폐회", "who": "송승환(㈜피엠씨프러덕션 예술감독)" }, "eng": { "title": "Closing", "who": "Song Seung-whan (Artistic Director, PMC Production)" } }
       ]
     }
   ],
