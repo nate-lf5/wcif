@@ -201,11 +201,18 @@
         } else if (i.who) {
           whoHtml = '<div class="sc-grp"><span class="sc-role"></span><span class="sc-people"><span class="sc-person">' + esc(i.who) + '</span></span></div>';
         }
-        sHtml += '<div class="sc-row">' +
-          '<div class="sc-time">' + esc(it.time || '') + '</div>' +
-          '<div class="sc-mid">' + titleHtml + '</div>' +
-          '<div class="sc-right">' + whoHtml + '</div>' +
-          '</div>';
+        if (i.title) {
+          sHtml += '<div class="sc-row">' +
+            '<div class="sc-time">' + esc(it.time || '') + '</div>' +
+            '<div class="sc-mid">' + titleHtml + '</div>' +
+            '<div class="sc-right">' + whoHtml + '</div>' +
+            '</div>';
+        } else {
+          sHtml += '<div class="sc-row">' +
+            '<div class="sc-time">' + esc(it.time || '') + '</div>' +
+            '<div class="sc-right" style="grid-column:2/4">' + whoHtml + '</div>' +
+            '</div>';
+        }
       });
       sHtml += '</div>';
     });
