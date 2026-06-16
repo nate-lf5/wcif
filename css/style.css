@@ -695,6 +695,46 @@ body.has-float .scroll-cue { bottom: 92px; }
 .sched-list .who { color: var(--ink-soft); font-size: .9rem; }
 .sched-note { margin-top: 1.2rem; font-size: .85rem; color: var(--ink-soft); }
 
+/* 프로그램 타임테이블 (모더레이터/패널 구분형) */
+.sc-sec {
+  background: var(--accent); color: #fff;
+  font-family: var(--display); font-stretch: 112%; font-weight: 800;
+  font-size: .92rem; letter-spacing: .05em; word-break: keep-all;
+  padding: .72rem 1.6rem;
+}
+.sc-sec.lv2 {
+  background: #3a5cf0; font-size: .8rem; letter-spacing: .1em; text-transform: uppercase;
+  padding: .5rem 1.6rem;
+}
+.sc-row {
+  display: grid; grid-template-columns: 116px 1.2fr 1.6fr; gap: 1rem 1.4rem;
+  padding: 1rem 1.6rem; border-bottom: 1px solid var(--line);
+  align-items: start; word-break: keep-all;
+}
+.sc-row:last-child { border-bottom: 0; }
+.sc-time {
+  font-family: var(--display); font-stretch: 115%; font-weight: 800;
+  color: var(--accent); font-size: .9rem; white-space: nowrap;
+}
+.sc-mid { font-weight: 700; color: var(--ink); font-size: .98rem; line-height: 1.5; }
+.sc-type { color: var(--accent); font-weight: 800; }
+.sc-right { display: flex; flex-direction: column; gap: .55rem; }
+.sc-grp { display: grid; grid-template-columns: 78px 1fr; gap: .7rem; align-items: start; }
+.sc-role {
+  font-family: var(--display); font-stretch: 108%; font-weight: 800;
+  font-size: .76rem; letter-spacing: .02em; color: var(--accent);
+  padding-top: .12rem; word-break: keep-all;
+}
+.sc-people { display: flex; flex-direction: column; gap: .3rem; }
+.sc-person { font-size: .93rem; color: var(--ink-soft); line-height: 1.45; }
+.sc-person b { color: var(--ink); font-weight: 800; }
+.sc-org { color: var(--ink-soft); font-weight: 500; }
+@media (max-width: 760px) {
+  .sc-row { grid-template-columns: 1fr; gap: .45rem; padding: .9rem 1.1rem; }
+  .sc-sec, .sc-sec.lv2 { padding-left: 1.1rem; padding-right: 1.1rem; }
+  .sc-grp { grid-template-columns: 64px 1fr; gap: .5rem; }
+}
+
 /* ---------- Archive ---------- */
 .archive-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem;

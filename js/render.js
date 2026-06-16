@@ -173,16 +173,33 @@
     C.schedule.forEach(function (day) {
       var d = day[L] || day.kor;
       sHtml += '<div class="sched-day">' +
-        '<div class="sched-head"><span class="sched-tag">' + esc(d.tag) + '</span><h3>' + esc(d.title) + '</h3></div>' +
-        '<ul class="sched-list">';
+        '<div class="sched-head"><span class="sched-tag">' + esc(d.tag) + '</span><h3>' + esc(d.title) + '</h3></div>';
       (day.items || []).forEach(function (it) {
         var i = it[L] || it.kor;
-        sHtml += '<li' + (it.time ? '' : ' class="sched-sub"') + '>' +
-          '<span class="time">' + esc(it.time) + '</span>' +
-          '<span class="what">' + esc(i.title) + '</span>' +
-          '<span class="who">' + esc(i.who || '') + '</span></li>';
+        if (it.sec) {
+          sHtml += '<div class="sc-sec' + (it.lv === 2 ? ' lv2' : '') + '">' + esc(i.title) + '</div>';
+          return;
+        }
+        var titleHtml = esc(i.title || '').replace(/^\[([^\]]+)\]/, '<span class="sc-type">[$1]</span>');
+        var whoHtml = '';
+        if (Array.isArray(i.who)) {
+          i.who.forEach(function (g) {
+            var ppl = (g.members || []).map(function (m) {
+              var p = String(m).split('|');
+              return '<span class="sc-person"><b>' + esc(p[0]) + '</b>' + (p[1] ? ' <span class="sc-org">' + esc(p[1]) + '</span>' : '') + '</span>';
+            }).join('');
+            whoHtml += '<div class="sc-grp"><span class="sc-role">' + esc(g.role || '') + '</span><span class="sc-people">' + ppl + '</span></div>';
+          });
+        } else if (i.who) {
+          whoHtml = '<div class="sc-grp"><span class="sc-role"></span><span class="sc-people"><span class="sc-person">' + esc(i.who) + '</span></span></div>';
+        }
+        sHtml += '<div class="sc-row">' +
+          '<div class="sc-time">' + esc(it.time || '') + '</div>' +
+          '<div class="sc-mid">' + titleHtml + '</div>' +
+          '<div class="sc-right">' + whoHtml + '</div>' +
+          '</div>';
       });
-      sHtml += '</ul></div>';
+      sHtml += '</div>';
     });
     sHtml += '<p class="sched-note">' +
       (isEn ? '* The program is subject to change.' : '* 상기 일정은 행사 사정에 따라 변경될 수 있습니다.') +
