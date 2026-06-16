@@ -152,11 +152,13 @@ a.btn-primary[href^="mailto:"] { display: none; }
 }
 .hero-display .line-accent { color: var(--accent); }
 .hero-meta {
-  display: flex; flex-wrap: wrap; gap: .8rem 2.5rem;
+  display: flex; flex-wrap: wrap; gap: 1.2rem 2rem;
+  justify-content: space-between; align-items: center;
   margin-top: 2rem; padding-top: 1.4rem;
-  align-items: baseline;
   font-size: .95rem; color: var(--ink-soft);
 }
+.hero-meta-text { display: flex; flex-wrap: wrap; gap: .6rem 2.5rem; align-items: baseline; }
+.hero-cta { flex-shrink: 0; }
 .hero-meta .date {
   font-family: var(--display); font-stretch: 120%; font-weight: 800;
   font-size: clamp(1rem, 2.2vw, 1.45rem); letter-spacing: .02em;

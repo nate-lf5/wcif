@@ -410,11 +410,11 @@
       ph += '<div class="fs-session">' +
         '<div class="fs-session-bar"><span class="fs-session-no">Session ' + ss.no + '</span>' +
         '<span class="fs-session-cat">' + esc(ss.cat) + '</span></div>' +
-        '<div class="fs-session-topic">' + esc(isEn ? ss.eng : ss.kor) + ' <em>' + tentL + '</em></div>' +
+        '<div class="fs-session-topic">' + esc(isEn ? ss.eng : ss.kor) + '</div>' +
         '<ul class="fs-session-list">' +
           fsPerson(ss.host, hostL) +
           ss.panel.map(function (n) { return fsPerson(n, panelL); }).join('') +
-          '<li><span class="fsp-role">' + panelL + '</span><span class="fsp-name fsp-tba">' + tbaL + '</span></li>' +
+          (ss.tba ? '<li><span class="fsp-role">' + panelL + '</span><span class="fsp-name fsp-tba">' + tbaL + '</span></li>' : '') +
         '</ul></div>';
     });
     fsProg.innerHTML = ph;
