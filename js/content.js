@@ -4,34 +4,62 @@
 // 직접 수정해도 됩니다 (수정 후 사이트 새로고침).
 // =====================================================
 window.WCIF_CONTENT = {
-  "popup": {
-    "enabled": true,
-    "url": "hackathon.html",
-    "kor": {
-      "label": "Hackathon",
-      "title": "해커톤 참가자 모집",
-      "lines": [
-        "하이프크래프트 · WCIF 문화 해커톤",
-        "모집 · 2026.06.16(화) ~ 06.19(금) 14:00",
-        "대구·수성구의 유휴 공간을 문화로 되살리는 청년 아이디어 경진대회"
-      ],
-      "btn": "해커톤 신청 안내 보기",
-      "hide": "오늘 하루 보지 않기",
-      "close": "닫기"
+  "popups": [
+    {
+      "id": "hackathon", "enabled": true, "url": "hackathon.html",
+      "kor": {
+        "label": "Hackathon",
+        "title": "해커톤 참가자 모집",
+        "lines": [
+          "하이프크래프트 · WCIF 문화 해커톤",
+          "모집 · 2026.06.16(화) ~ 06.19(금) 14:00",
+          "대구·수성구의 유휴 공간을 문화로 되살리는 청년 아이디어 경진대회"
+        ],
+        "btn": "해커톤 신청 안내 보기",
+        "hide": "오늘 하루 보지 않기",
+        "close": "닫기"
+      },
+      "eng": {
+        "label": "Hackathon",
+        "title": "Hackathon Open Call",
+        "lines": [
+          "Hypercraft · WCIF Culture Hackathon",
+          "Applications · Jun 16 (Tue) – Jun 19 (Fri), 2026, 14:00",
+          "An idea competition reviving idle spaces in Daegu & Suseong-gu through culture"
+        ],
+        "btn": "View Hackathon Details",
+        "hide": "Don't show again today",
+        "close": "Close"
+      }
     },
-    "eng": {
-      "label": "Hackathon",
-      "title": "Hackathon Open Call",
-      "lines": [
-        "Hypercraft · WCIF Culture Hackathon",
-        "Applications · Jun 16 (Tue) – Jun 19 (Fri), 2026, 14:00",
-        "An idea competition reviving idle spaces in Daegu & Suseong-gu through culture"
-      ],
-      "btn": "View Hackathon Details",
-      "hide": "Don't show again today",
-      "close": "Close"
+    {
+      "id": "futurestage", "enabled": true, "url": "https://docs.google.com/forms/d/e/1FAIpQLScnHY2VriM7Pdye9fkojQo5NxQqqL6rW5DbHFW57lKToiwQDw/viewform",
+      "kor": {
+        "label": "Future Stage",
+        "title": "퓨처 스테이지 안내",
+        "lines": [
+          "퓨처 스테이지 : 컬쳐&트렌드 인사이트",
+          "트렌드세터들의 자유로운 오픈 팟캐스트",
+          "2026.07.02(목) · 수성스퀘어 피오니홀"
+        ],
+        "btn": "사전등록 바로가기",
+        "hide": "오늘 하루 보지 않기",
+        "close": "닫기"
+      },
+      "eng": {
+        "label": "Future Stage",
+        "title": "Future Stage",
+        "lines": [
+          "Future Stage: Culture & Trend Insight",
+          "Free, open podcasts by trendsetters",
+          "Jul 2 (Thu) · Peony Hall, Suseong Square"
+        ],
+        "btn": "Pre-register",
+        "hide": "Don't show again today",
+        "close": "Close"
+      }
     }
-  },
+  ],
   "registration": {
     "enabled": false,
     "url": "register.html",

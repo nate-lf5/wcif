@@ -104,18 +104,22 @@
     document.addEventListener(ev, function (e) { e.preventDefault(); }, false);
   });
 
-  /* ---------- 0.5 공지 팝업 (메인 페이지 전용) ---------- */
+  /* ---------- 0.5 공지 팝업 (메인 페이지 전용, 다중 지원) ---------- */
   var isMain = !!document.querySelector('.hero');
-  if (isMain && C.popup && C.popup.enabled) {
+  var pops = C.popups || (C.popup ? [C.popup] : []);
+  if (isMain && pops.length) {
     var today = new Date().toISOString().slice(0, 10);
-    var hidden = false;
-    try { hidden = localStorage.getItem('wcif_popup_hide') === today; } catch (e) {}
-    if (!hidden) {
-      var pp = C.popup, pt = pp[L] || pp.kor;
+    var visible = pops.filter(function (pp) {
+      if (pp.enabled === false) return false;
+      try { return localStorage.getItem('wcif_popup_hide_' + (pp.id || pp.url)) !== today; } catch (e) { return true; }
+    });
+    if (visible.length) {
       var pov = document.createElement('div');
       pov.className = 'site-popup';
-      pov.innerHTML =
-        '<div class="site-popup-box" role="dialog" aria-modal="true" aria-label="' + esc(pt.title) + '">' +
+      pov.innerHTML = '<div class="site-popup-wrap">' + visible.map(function (pp) {
+        var pt = pp[L] || pp.kor;
+        var ext = /^https?:/i.test(pp.url || '');
+        return '<div class="site-popup-box" data-id="' + esc(pp.id || pp.url) + '" role="dialog" aria-modal="true" aria-label="' + esc(pt.title) + '">' +
           '<div class="site-popup-head">' +
             '<span class="site-popup-label">' + esc(pt.label) + '</span>' +
             '<button class="site-popup-x" type="button" aria-label="닫기">×</button>' +
@@ -123,24 +127,28 @@
           '<div class="site-popup-body">' +
             '<h3>' + esc(pt.title) + '</h3>' +
             (pt.lines || []).map(function (l) { return '<p>' + esc(l) + '</p>'; }).join('') +
-            (pp.url ? '<a class="btn-primary site-popup-btn" href="' + esc(pp.url) + '">' + esc(pt.btn) + '</a>' : '') +
+            (pp.url ? '<a class="btn-primary site-popup-btn" href="' + esc(pp.url) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' + esc(pt.btn) + '</a>' : '') +
           '</div>' +
           '<div class="site-popup-foot">' +
             '<label><input type="checkbox" class="site-popup-chk"> ' + esc(pt.hide) + '</label>' +
             '<button class="site-popup-close" type="button">' + esc(pt.close) + '</button>' +
           '</div>' +
         '</div>';
+      }).join('') + '</div>';
       document.body.appendChild(pov);
-      function closePopup() {
-        if (pov.querySelector('.site-popup-chk').checked) {
-          try { localStorage.setItem('wcif_popup_hide', today); } catch (e) {}
+      var closeBox = function (box) {
+        if (box.querySelector('.site-popup-chk').checked) {
+          try { localStorage.setItem('wcif_popup_hide_' + box.getAttribute('data-id'), today); } catch (e) {}
         }
-        pov.remove();
-      }
-      pov.querySelector('.site-popup-x').addEventListener('click', closePopup);
-      pov.querySelector('.site-popup-close').addEventListener('click', closePopup);
-      var popBtn = pov.querySelector('.site-popup-btn');
-      if (popBtn) popBtn.addEventListener('click', function () { pov.remove(); });
+        box.remove();
+        if (!pov.querySelector('.site-popup-box')) pov.remove();
+      };
+      pov.querySelectorAll('.site-popup-box').forEach(function (box) {
+        box.querySelector('.site-popup-x').addEventListener('click', function () { closeBox(box); });
+        box.querySelector('.site-popup-close').addEventListener('click', function () { closeBox(box); });
+        var b = box.querySelector('.site-popup-btn');
+        if (b) b.addEventListener('click', function () { pov.remove(); });
+      });
     }
   }
 

@@ -186,6 +186,8 @@ a.btn-primary[href^="mailto:"] { display: none; }
 }
 .btn-primary { background: var(--accent); color: #fff; }
 .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); }
+.btn-lg { padding: 1.5rem 3.6rem; font-size: 1.05rem; letter-spacing: .1em; }
+@media (max-width: 560px) { .btn-lg { padding: 1.2rem 2.4rem; font-size: .95rem; } }
 .btn-ghost { border: 1.5px solid currentColor; }
 .hero .btn-ghost { color: var(--ink); }
 .btn-ghost:hover { background: var(--ink); color: var(--paper); transform: translateY(-2px); }
@@ -574,6 +576,7 @@ body.hack-theme .footer-social a:hover { color: var(--accent); border-color: var
   left: 4%; bottom: 96px;
   animation: spUp .3s ease;
 }
+.site-popup-wrap { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; max-height: calc(100vh - 120px); overflow-y: auto; }
 .site-popup-box {
   width: min(360px, 88vw);
   background: var(--paper); border: 1px solid var(--ink);
