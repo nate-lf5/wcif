@@ -736,7 +736,7 @@ body.has-float .scroll-cue { bottom: 92px; }
   padding: .45rem 1.2rem; margin: .7rem 0 .1rem 1.6rem;
 }
 .sc-row {
-  display: grid; grid-template-columns: 116px 1.2fr 1.6fr; gap: 1rem 1.4rem;
+  display: grid; grid-template-columns: 116px 1.5fr 1.3fr; gap: 1rem 1.4rem;
   padding: 1rem 1.6rem; border-bottom: 1px solid var(--line);
   align-items: start; word-break: keep-all;
 }
@@ -753,7 +753,7 @@ body.has-float .scroll-cue { bottom: 92px; }
 .sc-role {
   font-weight: 800; font-size: .95rem; color: var(--accent);
   line-height: 1.4; word-break: keep-all;
-  display: flex; align-items: center; padding: .42rem 0;
+  display: flex; align-items: flex-start; padding: .42rem 0;
 }
 .sc-people { display: flex; flex-direction: column; }
 .sc-person { font-size: .95rem; color: var(--ink-soft); line-height: 1.45; padding: .42rem 0; border-top: 1px solid var(--line); }
