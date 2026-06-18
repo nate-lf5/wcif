@@ -425,6 +425,15 @@ a.btn-primary[href^="mailto:"] { display: none; }
 .subnav-crumb { font-size: .85rem; color: var(--ink-soft); white-space: nowrap; flex-shrink: 0; }
 .subnav-crumb span { color: var(--line); margin: 0 .25em; }
 
+/* 인트로 2단(포스터 + 텍스트) */
+.intro-split { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 3.4rem; align-items: center; }
+.intro-split-img img { width: 100%; display: block; border-radius: 8px; }
+.intro-split-text .prose { max-width: 640px; }
+@media (max-width: 860px) {
+  .intro-split { grid-template-columns: 1fr; gap: 2rem; }
+  .intro-split-img { max-width: 440px; }
+}
+
 .prose { max-width: 800px; font-size: 1.05rem; color: #34322c; word-break: keep-all; }
 .prose p + p { margin-top: 1.4rem; }
 .prose strong { color: var(--ink); }
