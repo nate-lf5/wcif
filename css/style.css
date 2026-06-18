@@ -731,8 +731,9 @@ body.has-float .scroll-cue { bottom: 92px; }
   padding: .72rem 1.6rem;
 }
 .sc-sec.lv2 {
+  display: inline-block;
   background: #3a5cf0; font-size: .8rem; letter-spacing: .1em; text-transform: uppercase;
-  padding: .5rem 1.6rem;
+  padding: .45rem 1.2rem; margin: .7rem 0 .1rem 1.6rem;
 }
 .sc-row {
   display: grid; grid-template-columns: 116px 1.2fr 1.6fr; gap: 1rem 1.4rem;
@@ -746,21 +747,30 @@ body.has-float .scroll-cue { bottom: 92px; }
 }
 .sc-mid { font-weight: 700; color: var(--ink); font-size: .98rem; line-height: 1.5; }
 .sc-type { color: var(--accent); font-weight: 800; }
-.sc-right { display: flex; flex-direction: column; gap: .55rem; }
-.sc-grp { display: grid; grid-template-columns: 78px 1fr; gap: .7rem; align-items: start; }
+.sc-right { display: flex; flex-direction: column; gap: 0; }
+.sc-grp { display: grid; grid-template-columns: 110px 1fr; gap: 0 1rem; align-items: stretch; }
+.sc-grp + .sc-grp { border-top: 1px solid var(--line); }
 .sc-role {
-  font-family: var(--display); font-stretch: 108%; font-weight: 800;
-  font-size: .76rem; letter-spacing: .02em; color: var(--accent);
-  padding-top: .12rem; word-break: keep-all;
+  font-weight: 800; font-size: .95rem; color: var(--accent);
+  line-height: 1.4; word-break: keep-all;
+  display: flex; align-items: center; padding: .42rem 0;
 }
-.sc-people { display: flex; flex-direction: column; gap: .3rem; }
-.sc-person { font-size: .93rem; color: var(--ink-soft); line-height: 1.45; }
+.sc-people { display: flex; flex-direction: column; }
+.sc-person { font-size: .95rem; color: var(--ink-soft); line-height: 1.45; padding: .42rem 0; border-top: 1px solid var(--line); }
+.sc-people > .sc-person:first-child { border-top: 0; }
+.sc-pre { color: var(--accent); font-weight: 800; margin-right: .45em; }
+.sc-flag {
+  display: inline-block; width: 1.3em; height: auto;
+  vertical-align: -0.14em; margin-right: .4em;
+  border: 1px solid rgba(0,0,0,.12); border-radius: 2px; box-sizing: border-box;
+}
 .sc-person b { color: var(--ink); font-weight: 800; }
 .sc-org { color: var(--ink-soft); font-weight: 500; }
 @media (max-width: 760px) {
   .sc-row { grid-template-columns: 1fr; gap: .45rem; padding: .9rem 1.1rem; }
   .sc-sec, .sc-sec.lv2 { padding-left: 1.1rem; padding-right: 1.1rem; }
-  .sc-grp { grid-template-columns: 64px 1fr; gap: .5rem; }
+  .sc-grp { grid-template-columns: 84px 1fr; gap: .5rem; }
+  .sc-sec.lv2 { margin-left: 1.1rem; }
 }
 
 /* ---------- Archive ---------- */

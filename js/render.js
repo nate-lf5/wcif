@@ -177,6 +177,13 @@
   /* ---------- 2. 프로그램 시간표 ---------- */
   var schedRoot = document.getElementById('schedule-root');
   if (schedRoot && C.schedule) {
+    var flagSvg = function (code) {
+      if (code === 'jp') return '<svg class="sc-flag" viewBox="0 0 3 2" aria-label="Japan"><rect width="3" height="2" fill="#fff"/><circle cx="1.5" cy="1" r=".6" fill="#bc002d"/></svg>';
+      if (code === 'at') return '<svg class="sc-flag" viewBox="0 0 3 2" aria-label="Austria"><rect width="3" height="2" fill="#ed2939"/><rect y=".667" width="3" height=".666" fill="#fff"/></svg>';
+      if (code === 'cn') return '<svg class="sc-flag" viewBox="0 0 3 2" aria-label="China"><rect width="3" height="2" fill="#de2910"/><path d="M0.6,0.22 0.679,0.441 0.914,0.448 0.728,0.592 0.794,0.817 0.6,0.685 0.406,0.817 0.472,0.592 0.286,0.448 0.521,0.441Z" fill="#ffde00"/></svg>';
+      if (code === 'us') return '<svg class="sc-flag" viewBox="0 0 3 2" aria-label="USA"><rect width="3" height="2" fill="#b22234"/><rect y="0.154" width="3" height="0.154" fill="#fff"/><rect y="0.462" width="3" height="0.154" fill="#fff"/><rect y="0.769" width="3" height="0.154" fill="#fff"/><rect y="1.077" width="3" height="0.154" fill="#fff"/><rect y="1.385" width="3" height="0.154" fill="#fff"/><rect y="1.692" width="3" height="0.154" fill="#fff"/><rect width="1.2" height="1.077" fill="#3c3b6e"/></svg>';
+      return '';
+    };
     var sHtml = '';
     C.schedule.forEach(function (day) {
       var d = day[L] || day.kor;
@@ -194,7 +201,7 @@
           i.who.forEach(function (g) {
             var ppl = (g.members || []).map(function (m) {
               var p = String(m).split('|');
-              return '<span class="sc-person"><b>' + esc(p[0]) + '</b>' + (p[1] ? ' <span class="sc-org">' + esc(p[1]) + '</span>' : '') + '</span>';
+              return '<span class="sc-person">' + flagSvg(p[2]) + (p[3] ? '<span class="sc-pre">' + esc(p[3]) + '</span>' : '') + '<b>' + esc(p[0]) + '</b>' + (p[1] ? ' <span class="sc-org">' + esc(p[1]) + '</span>' : '') + '</span>';
             }).join('');
             whoHtml += '<div class="sc-grp"><span class="sc-role">' + esc(g.role || '') + '</span><span class="sc-people">' + ppl + '</span></div>';
           });
