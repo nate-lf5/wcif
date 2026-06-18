@@ -215,9 +215,23 @@
             '<div class="sc-right">' + whoHtml + '</div>' +
             '</div>';
         } else {
+          var catHtml = '';
+          if (Array.isArray(i.who)) {
+            i.who.forEach(function (g, gi) {
+              var ppl = (g.members || []).map(function (m) {
+                var p = String(m).split('|');
+                return '<span class="sc-person">' + flagSvg(p[2]) + (p[3] ? '<span class="sc-pre">' + esc(p[3]) + '</span>' : '') + '<b>' + esc(p[0]) + '</b>' + (p[1] ? ' <span class="sc-org">' + esc(p[1]) + '</span>' : '') + '</span>';
+              }).join('');
+              if (gi > 0) catHtml += '<div class="sc-gline"></div>';
+              catHtml += '<div class="sc-cat">' + esc(g.role || '') + '</div>' +
+                '<div class="sc-grp"><span class="sc-role"></span><span class="sc-people">' + ppl + '</span></div>';
+            });
+          } else {
+            catHtml = whoHtml;
+          }
           sHtml += '<div class="sc-row">' +
             '<div class="sc-time">' + esc(it.time || '') + '</div>' +
-            '<div class="sc-right" style="grid-column:2/4">' + whoHtml + '</div>' +
+            '<div class="sc-catwrap">' + catHtml + '</div>' +
             '</div>';
         }
       });
