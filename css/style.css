@@ -760,7 +760,7 @@ body.has-float .scroll-cue { bottom: 92px; }
 .sc-people > .sc-person:first-child { border-top: 0; }
 .sc-pre { color: var(--accent); font-weight: 800; margin-right: .45em; }
 .sc-catwrap { grid-column: 2 / 4; display: grid; grid-template-columns: 1.5fr 1.3fr; gap: 0 1.4rem; align-items: stretch; }
-.sc-cat { font-weight: 800; font-size: .95rem; color: var(--accent); line-height: 1.4; word-break: keep-all; align-self: start; padding: .42rem 0; }
+.sc-cat { font-weight: 800; font-size: .95rem; color: var(--accent); line-height: 1.2; word-break: keep-all; align-self: start; padding: 0 0 .42rem 0; }
 .sc-gline { grid-column: 1 / -1; border-top: 1px solid var(--line); }
 .sc-flag {
   display: inline-block; width: 1.3em; height: auto;
