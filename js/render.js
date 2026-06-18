@@ -196,28 +196,40 @@
           return;
         }
         var titleHtml = esc(i.title || '').replace(/^\[([^\]]+)\]/, '<span class="sc-type">[$1]</span>');
+        var hasTitle = !!i.title;
+        var nameHtml = function (p) {
+          return flagSvg(p[2]) + '<b>' + esc(p[0]) + '</b>' + (p[1] ? ' <span class="sc-org">' + esc(p[1]) + '</span>' : '');
+        };
         var whoHtml = '';
         if (Array.isArray(i.who)) {
           i.who.forEach(function (g) {
-            var ppl = (g.members || []).map(function (m) {
-              var p = String(m).split('|');
-              return '<span class="sc-person">' + flagSvg(p[2]) + (p[3] ? '<span class="sc-pre">' + esc(p[3]) + '</span>' : '') + '<b>' + esc(p[0]) + '</b>' + (p[1] ? ' <span class="sc-org">' + esc(p[1]) + '</span>' : '') + '</span>';
-            }).join('');
-            whoHtml += '<div class="sc-grp"><span class="sc-role">' + esc(g.role || '') + '</span><span class="sc-people">' + ppl + '</span></div>';
+            if (hasTitle) {
+              var ppl = (g.members || []).map(function (m) {
+                var p = String(m).split('|');
+                return '<span class="sc-person">' + (p[3] ? '<span class="sc-pre">' + esc(p[3]) + '</span>' : '') + nameHtml(p) + '</span>';
+              }).join('');
+              whoHtml += '<div class="sc-grp"><span class="sc-role">' + esc(g.role || '') + '</span><span class="sc-people">' + ppl + '</span></div>';
+            } else {
+              var ppl2 = (g.members || []).map(function (m) {
+                var p = String(m).split('|');
+                return '<span class="sc-person sc-person-pre"><span class="sc-pre">' + (p[3] ? esc(p[3]) : '') + '</span><span class="sc-nm">' + nameHtml(p) + '</span></span>';
+              }).join('');
+              whoHtml += '<div class="sc-grp cat"><span class="sc-cat">' + esc(g.role || '') + '</span><span class="sc-people">' + ppl2 + '</span></div>';
+            }
           });
         } else if (i.who) {
           whoHtml = '<div class="sc-grp"><span class="sc-role"></span><span class="sc-people"><span class="sc-person">' + esc(i.who) + '</span></span></div>';
         }
-        if (i.title) {
+        if (hasTitle) {
           sHtml += '<div class="sc-row">' +
             '<div class="sc-time">' + esc(it.time || '') + '</div>' +
             '<div class="sc-mid">' + titleHtml + '</div>' +
             '<div class="sc-right">' + whoHtml + '</div>' +
             '</div>';
         } else {
-          sHtml += '<div class="sc-row">' +
+          sHtml += '<div class="sc-row sc-row-cat">' +
             '<div class="sc-time">' + esc(it.time || '') + '</div>' +
-            '<div class="sc-right" style="grid-column:2/4">' + whoHtml + '</div>' +
+            '<div class="sc-catwrap">' + whoHtml + '</div>' +
             '</div>';
         }
       });
