@@ -1163,18 +1163,53 @@ body.fs-theme .footer-bottom { border-top-color: #20241a; color: #5f6457; }
   .hack-dl div { grid-template-columns: 110px 1fr; }
 }
 
-/* Hackathon 테마: 포스터 오렌지 컬러 (강조색 전환) */
+/* Hackathon 테마: 블랙 배경 + 하늘색(#5FDEFC) 강조 */
 body.hack-theme {
-  --accent: #ff4a1a;
-  --accent-dark: #d6360c;
-  --accent-soft: #ffd9cb;
+  --accent: #5fdefc;
+  --accent-dark: #38c6e8;
+  --accent-soft: #a7ecfd;
+  --ink: #e8eef2;
+  --ink-soft: #93a6b0;
+  --paper: #131b23;
+  --paper-warm: #0f161d;
+  --line: #29384a;
+  background: #0a0e13;
+  color: #e8eef2;
 }
+body.hack-theme .site-header { background: #0a0e13; border-bottom-color: #29384a; }
+body.hack-theme .nav-toggle span,
+body.hack-theme .nav-toggle span::before,
+body.hack-theme .nav-toggle span::after { background: #e8eef2; }
+body.hack-theme .lang-switch { color: #93a6b0; }
+body.hack-theme .lang-switch a:hover { color: #e8eef2; }
+body.hack-theme .btn-cta { background: var(--accent); color: #06222b; }
+body.hack-theme .btn-cta:hover { background: #fff; color: #06222b; }
+
+body.hack-theme .page-hero { background: var(--accent); color: #06222b; }
 body.hack-theme .page-hero::before {
   background:
-    radial-gradient(ellipse 40% 45% at 85% 10%, rgba(255,210,193,.5), transparent 65%),
-    radial-gradient(ellipse 35% 40% at 10% 90%, rgba(214,54,12,.5), transparent 65%);
+    radial-gradient(ellipse 42% 46% at 82% 8%, rgba(255,255,255,.20), transparent 62%),
+    radial-gradient(ellipse 38% 42% at 8% 92%, rgba(6,34,43,.12), transparent 65%);
 }
-body.hack-theme ::selection { background: var(--accent); color: #fff; }
+body.hack-theme .page-hero .crumb { color: rgba(6,34,43,.6); }
+body.hack-theme .page-hero h1 .en { color: rgba(6,34,43,.72); }
+
+body.hack-theme .subnav { background: #0a0e13; border-bottom-color: #29384a; }
+body.hack-theme .section.warm { background: #0f161d; border-color: #29384a; }
+body.hack-theme .section-head-row { border-bottom-color: #2f4254; }
+
+body.hack-theme .prose { color: #bcc8cf; }
+body.hack-theme .btn-primary { color: #06222b; }
+body.hack-theme .btn-primary:hover { background: var(--accent-dark); color: #06222b; }
+body.hack-theme .track-card:hover .track-no { color: #06222b; }
+
+body.hack-theme .site-footer { background: #07090d; color: #7e8d97; }
+body.hack-theme .site-footer a:hover { color: var(--accent); }
+body.hack-theme .footer-logo { color: #e8eef2; }
+body.hack-theme .footer-logo span { color: var(--accent); }
+body.hack-theme .footer-bottom { border-top-color: #1c2733; color: #5d6873; }
+
+body.hack-theme ::selection { background: var(--accent); color: #06222b; }
 
 /* ============================================
    모바일 반응형 보정
