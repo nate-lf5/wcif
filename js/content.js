@@ -12,7 +12,7 @@ window.WCIF_CONTENT = {
         "title": "해커톤 참가자 모집",
         "lines": [
           "하이프크래프트 · WCIF 문화 해커톤",
-          "모집 · 2026.06.16(화) ~ 06.19(금) 14:00",
+          "모집 · 2026.06.16(화) ~ 06.22(월) 17:00",
           "대구·수성구의 유휴 공간을 문화로 되살리는 청년 아이디어 경진대회"
         ],
         "btn": "해커톤 신청 안내 보기",
@@ -24,7 +24,7 @@ window.WCIF_CONTENT = {
         "title": "Hackathon Open Call",
         "lines": [
           "Hypercraft · WCIF Culture Hackathon",
-          "Applications · Jun 16 (Tue) – Jun 19 (Fri), 2026, 14:00",
+          "Applications · Jun 16 (Tue) – Jun 22 (Mon), 2026, 17:00",
           "An idea competition reviving idle spaces in Daegu & Suseong-gu through culture"
         ],
         "btn": "View Hackathon Details",
