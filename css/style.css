@@ -1174,7 +1174,7 @@ body.fs-theme .footer-bottom { border-top-color: #20241a; color: #5f6457; }
   font-family: var(--display); font-stretch: 110%; font-weight: 800;
   font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--neon); min-width: 46px;
 }
-.fsp-name { font-weight: 800; color: #e9ece3; }
+.fsp-name { font-weight: 800; color: #e9ece3; min-width: 3.5em; flex-shrink: 0; }
 .fsp-org { color: #a7ab9b; font-size: .9rem; }
 .fsp-tba { color: #8f9484; font-weight: 600; }
 
