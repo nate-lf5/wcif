@@ -250,6 +250,7 @@ a.btn-primary[href^="mailto:"] { display: none; }
   gap: 2rem; flex-wrap: wrap; margin-bottom: 3.2rem;
   padding-bottom: 1.6rem; border-bottom: 1px solid var(--ink);
 }
+.section-head-row.no-rule { border-bottom: 0; padding-bottom: 0; }
 .link-more {
   font-family: var(--display); font-stretch: 110%;
   font-weight: 800; font-size: .85rem; letter-spacing: .08em;
@@ -800,6 +801,7 @@ body.has-float .scroll-cue { bottom: 92px; }
 .sc-org { color: var(--ink-soft); font-weight: 500; }
 @media (max-width: 760px) {
   .sc-row { grid-template-columns: 1fr; gap: .45rem; padding: .9rem 1.1rem; }
+  .sc-time { color: #808080; }
   .sc-sec, .sc-sec.lv2 { padding-left: 1.1rem; padding-right: 1.1rem; }
   .sc-grp { grid-template-columns: 84px 1fr; gap: .5rem; }
   .sc-catwrap { grid-column: auto; grid-template-columns: 1fr; gap: 0; }
