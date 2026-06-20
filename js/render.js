@@ -419,12 +419,7 @@
 
   var spFull = document.getElementById('speakers-root');
   if (spFull && C.speakers) {
-    var full = C.speakers.map(speakerCard).join('');
-    full += '<article class="speaker-card speaker-more">' +
-      '<div class="speaker-more-inner"><h3>And More</h3><p>' +
-      (isEn ? 'More speakers to be announced' : '추가 연사가 공개될 예정입니다') +
-      '</p></div></article>';
-    spFull.innerHTML = full;
+    spFull.innerHTML = C.speakers.map(speakerCard).join('');
     makeCarousel(spFull, { loop: true, auto: true });
     bindSpeakerClicks(spFull);
   }
