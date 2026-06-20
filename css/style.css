@@ -293,6 +293,26 @@ a.btn-primary[href^="mailto:"] { display: none; }
 .track-card.main-track:hover { background: var(--ink); }
 .track-card.main-track:hover .track-no { color: var(--accent); }
 
+/* 홈 프로그램 카드: 기본 이미지(KV) 노출 + 마우스 오버 시 글 노출 */
+.kv-grid .track-card { aspect-ratio: 1 / 1; min-height: 0; overflow: hidden; padding: 1.7rem 1.6rem; }
+.kv-grid .track-kv {
+  position: absolute; inset: 0; z-index: 4;
+  background-size: cover; background-position: center;
+  transition: opacity .35s ease;
+}
+.kv-grid .track-card:hover .track-kv { opacity: 0; }
+.kv-grid .track-no { font-size: 1.85rem; margin-bottom: .65rem; }
+.kv-grid .track-card h3 { font-size: 1.2rem; }
+.kv-grid .track-card p { margin-top: .55rem; font-size: .82rem; line-height: 1.5; }
+.kv-grid .track-card .track-tag { margin-top: 1rem; }
+/* 글 카드 색상 (호버 시 드러남) — 2026 WCIF는 기존 파란색 유지 */
+.kv-grid .fs-card, .kv-grid .fs-card:hover { background: #151610; color: #fff; }
+.kv-grid .fs-card .track-no { color: #87c435; }
+.kv-grid .hack-card, .kv-grid .hack-card:hover { background: #12161b; color: #fff; }
+.kv-grid .hack-card .track-no { color: #77d6f8; }
+.kv-grid .track-card.main-track:hover { background: var(--accent); color: #fff; }
+.kv-grid .track-card.main-track:hover .track-no { color: var(--accent-soft); }
+
 /* ---------- Speakers ---------- */
 .speaker-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.4rem 1.6rem;
@@ -432,6 +452,15 @@ a.btn-primary[href^="mailto:"] { display: none; }
 @media (max-width: 860px) {
   .intro-split { grid-template-columns: 1fr; gap: 2rem; }
   .intro-split-img { max-width: 440px; }
+}
+
+/* 주최사: 본문(좌) + 로고(우) 2단 */
+.org-split { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: center; }
+.org-split .prose { max-width: 640px; }
+.org-logo img { width: 100%; max-width: 420px; height: auto; display: block; margin: 0 auto; }
+@media (max-width: 760px) {
+  .org-split { grid-template-columns: 1fr; gap: 2rem; }
+  .org-logo img { max-width: 300px; margin: 0; }
 }
 
 .prose { max-width: 800px; font-size: 1.05rem; color: #34322c; word-break: keep-all; }
@@ -881,20 +910,26 @@ body.has-float .scroll-cue { bottom: 92px; }
 
 /* ---------- Partners / Organizer ---------- */
 .logo-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1.6rem;
-  max-width: 1000px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem 1.6rem; margin-top: 1.8rem;
+  max-width: 1080px;
 }
+.sponsor-logos { grid-template-columns: repeat(5, 1fr); }
 .logo-box {
-  border: 1px solid var(--line); background: #fff; aspect-ratio: 5/3;
+  background: transparent; aspect-ratio: 5/3;
   display: flex; align-items: center; justify-content: center;
-  padding: 1.2rem; transition: border-color .2s;
+  padding: .8rem;
 }
-.logo-box:hover { border-color: var(--ink); }
-.logo-box img { max-height: 100%; object-fit: contain; filter: grayscale(1); transition: filter .3s; }
-.logo-box:hover img { filter: grayscale(0); }
+.logo-box img { max-height: 74%; max-width: 96%; object-fit: contain; filter: grayscale(1); opacity: .9; transition: filter .3s, opacity .3s; }
+.logo-box:hover img { filter: grayscale(0); opacity: 1; }
 .logo-box.empty {
   color: var(--ink-soft); font-size: .82rem; font-weight: 600;
-  border-style: dashed; background: transparent;
+  border: 1px dashed var(--line);
+}
+@media (max-width: 860px) {
+  .logo-grid, .sponsor-logos { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 520px) {
+  .logo-grid, .sponsor-logos { grid-template-columns: repeat(2, 1fr); }
 }
 .dl-row { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 1.4rem; }
 .btn-dl-asset {
@@ -1006,6 +1041,8 @@ body.has-float .scroll-cue { bottom: 92px; }
   .track-grid { grid-template-columns: 1fr; }
   .track-card { border-right: 0; border-bottom: 1px solid var(--ink); min-height: 0; }
   .track-card:last-child { border-bottom: 0; }
+  .kv-grid .track-card { aspect-ratio: auto; }
+  .kv-grid .track-kv { position: static; opacity: 1; width: 100%; aspect-ratio: 1 / 1; margin-bottom: 1.3rem; }
   .speaker-grid, .speaker-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
   .location-grid { grid-template-columns: 1fr; }
   .main-nav {
