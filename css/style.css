@@ -295,7 +295,8 @@ a.btn-primary[href^="mailto:"] { display: none; }
 .track-card.main-track:hover .track-no { color: var(--accent); }
 
 /* 홈 프로그램 카드: 기본 이미지(KV) 노출 + 마우스 오버 시 글 노출 */
-.kv-grid .track-card { aspect-ratio: 1 / 1; min-height: 0; overflow: hidden; padding: 1.7rem 1.6rem; }
+.kv-grid { border: 0; }
+.kv-grid .track-card { aspect-ratio: 1 / 1; min-height: 0; overflow: hidden; padding: 1.7rem 1.6rem; border: 0; }
 .kv-grid .track-kv {
   position: absolute; inset: 0; z-index: 4;
   background-size: cover; background-position: center;
