@@ -6,7 +6,7 @@
 window.WCIF_CONTENT = {
   "popups": [
     {
-      "id": "hackathon", "enabled": true, "url": "hackathon.html",
+      "id": "hackathon", "enabled": false, "url": "hackathon.html",
       "kor": {
         "label": "Hackathon",
         "title": "해커톤 참가자 모집",
