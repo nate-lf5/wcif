@@ -12,3 +12,6 @@ supabase_setup.sql
 /_*.png
 /_*.md
 /motion assets/
+
+# 대용량 원본 PDF (웹은 webp로 표시, 배포 불필요)
+/WCIF_2026_HCK_program.pdf
