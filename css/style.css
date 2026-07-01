@@ -1167,6 +1167,7 @@ body.fs-theme .footer-bottom { border-top-color: #20241a; color: #5f6457; }
   font-family: var(--display); font-stretch: 112%; font-weight: 800;
   font-size: 1.15rem; letter-spacing: .04em; text-transform: uppercase; color: #e9ece3;
 }
+.fs-session-time { margin-left: auto; font-family: var(--display); font-stretch: 110%; font-weight: 800; font-size: .95rem; letter-spacing: .02em; color: #e9ece3; white-space: nowrap; }
 .fs-session-topic { margin-top: .85rem; font-size: 1.15rem; font-weight: 800; word-break: keep-all; color: #e9ece3; }
 .fs-session-topic em { font-style: normal; font-weight: 600; color: #8f9484; font-size: .85rem; margin-left: .2rem; }
 .fs-session-list { margin-top: 1rem; display: grid; gap: .55rem; }

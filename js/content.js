@@ -40,9 +40,9 @@ window.WCIF_CONTENT = {
         "lines": [
           "퓨처 스테이지 : 컬쳐&트렌드 인사이트",
           "트렌드세터들의 자유로운 오픈 팟캐스트",
-          "2026.07.02(목) · 수성스퀘어 피오니홀"
+          "2026.07.02(목) · 14:15~17:40 · 수성스퀘어 피오니홀"
         ],
-        "btn": "Zoom 링크 바로가기",
+        "btn": "온라인 참여 바로가기",
         "hide": "오늘 하루 보지 않기",
         "close": "닫기"
       },
@@ -52,9 +52,9 @@ window.WCIF_CONTENT = {
         "lines": [
           "Future Stage: Culture & Trend Insight",
           "Free, open podcasts by trendsetters",
-          "Jul 2 (Thu) · Peony Hall, Suseong Square"
+          "Jul 2 (Thu) · 14:15~17:40 · Peony Hall, Suseong Square"
         ],
-        "btn": "Join via Zoom",
+        "btn": "Join Online",
         "hide": "Don't show again today",
         "close": "Close"
       }
@@ -189,13 +189,15 @@ window.WCIF_CONTENT = {
     { "featured": false, "img": "images/speakers/card/heo-yurim.webp", "role": "호스트", "roleEng": "Host", "kor": { "name": "허유림", "title": "아이즈 매거진 편집장" }, "eng": { "name": "Yurim Heu", "title": "Editor in Chief, eyesmag" } }
   ],
   "futureStageProgram": [
-    { "no": 1, "cat": "Entertainment", "kor": "초연결 시대의 엔터테인먼트: 팬덤, 페스티벌, 그리고 소셜 네트워크", "eng": "Entertainment in the Hyper-Connected Era: Fandom, Festivals, and Social Networks", "host": "김경훈", "panel": ["박한진", "김미소", "진솔"] },
-    { "no": 2, "cat": "ESG", "kor": "지속가능한 멋(Sustainable Chic): 환경, 디자인과 라이프스타일이 되다", "eng": "Sustainable Chic: When the Environment Becomes Design and Lifestyle", "host": "정주희", "panel": ["곽재원", "최재식", "장은석"] },
-    { "no": 3, "cat": "Tech", "kor": "Tech for Creators: 기술이 재정의하는 미래의 일과 창작 생태계", "eng": "Tech for Creators: Technology Redefining the Future of Work and Creation", "host": "이정우", "panel": ["이보영", "아곤", "박진현"] },
-    { "no": 4, "cat": "Art", "kor": "예술의 일상화: 시각, 공간, 스토리텔링으로 문턱을 넘은 아트 씬", "eng": "Art in Everyday Life: An Art Scene Beyond the Threshold through Vision, Space, and Storytelling", "host": "김유라", "panel": ["안지성", "최예림", "김정민"] },
-    { "no": 5, "cat": "Life Style", "kor": "Subculture to Mainstream: 마이너한 취향이 거대한 비즈니스가 될 때", "eng": "Subculture to Mainstream: When Niche Tastes Become Big Business", "host": "허유림", "panel": ["여인택", "정인모", "정민규"] }
+    { "no": 1, "time": "14:15-14:55", "cat": "Entertainment", "kor": "초연결 시대의 엔터테인먼트: 팬덤, 페스티벌, 그리고 소셜 네트워크", "eng": "Entertainment in the Hyper-Connected Era: Fandom, Festivals, and Social Networks", "host": "김경훈", "panel": ["박한진", "김미소", "진솔"] },
+    { "no": 2, "time": "14:55-15:35", "cat": "ESG", "kor": "지속가능한 멋(Sustainable Chic): 환경, 디자인과 라이프스타일이 되다", "eng": "Sustainable Chic: When the Environment Becomes Design and Lifestyle", "host": "정주희", "panel": ["곽재원", "최재식", "장은석"] },
+    { "no": 3, "time": "15:45-16:25", "cat": "Tech", "kor": "Tech for Creators: 기술이 재정의하는 미래의 일과 창작 생태계", "eng": "Tech for Creators: Technology Redefining the Future of Work and Creation", "host": "이정우", "panel": ["이보영", "아곤", "박진현"] },
+    { "no": 4, "time": "16:25-17:05", "cat": "Art", "kor": "예술의 일상화: 시각, 공간, 스토리텔링으로 문턱을 넘은 아트 씬", "eng": "Art in Everyday Life: An Art Scene Beyond the Threshold through Vision, Space, and Storytelling", "host": "김유라", "panel": ["안지성", "최예림", "김정민"] },
+    { "no": 5, "time": "17:05-17:45", "cat": "Life Style", "kor": "Subculture to Mainstream: 마이너한 취향이 거대한 비즈니스가 될 때", "eng": "Subculture to Mainstream: When Niche Tastes Become Big Business", "host": "허유림", "panel": ["여인택", "정인모", "정민규"] }
   ],
   "bios": {
+    "이인선": { "kor": "21대, 22대 국회의원", "eng": "Member of the 21st and 22nd National Assembly", "links": [] },
+    "김승수": { "kor": "21대, 22대 국회의원", "eng": "Member of the 21st and 22nd National Assembly", "links": [] },
     "김경훈": { "kor": "MC 훈'으로 활동하는 사회자다. 다양한 축제와 브랜드 행사의 사회를 맡아 현장의 분위기를 이끈다.", "eng": "Host and presenter active as \"MC Hoon.\" He leads the atmosphere on-site by hosting various festivals and brand events.", "links": [] },
     "김미소": { "kor": "DMZ 피스트레인의 총감독이다. 철원에서 음악으로 경계를 허물고, '함께 춤추는' 평화와 공존의 축제 감각을 이어간다.", "eng": "Executive Director of DMZ Peace Train Music Festival. She breaks down borders through music in Cheorwon, continuing the festive spirit of peace and coexistence through \"dancing together.\"", "links": [] },
     "진솔": { "kor": "스타일대디의 대표이사다. 인플루언서 및 1인 미디어 분야의 연쇄 창업가로서 뉴미디어 크리에이터 생태계의 성장을 주도한다.", "eng": "He is the CEO of Style Daddy. As a serial entrepreneur in the new media and influencer industries, he leads the growth of the creator ecosystem.", "links": [] },
