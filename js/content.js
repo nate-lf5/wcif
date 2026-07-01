@@ -33,7 +33,7 @@ window.WCIF_CONTENT = {
       }
     },
     {
-      "id": "futurestage", "enabled": true, "url": "https://docs.google.com/forms/d/e/1FAIpQLScnHY2VriM7Pdye9fkojQo5NxQqqL6rW5DbHFW57lKToiwQDw/viewform",
+      "id": "futurestage", "enabled": true, "url": "https://us02web.zoom.us/j/86364526296?pwd=4mgQmaGa2oOTuunPrRBqmyzlLlMrli.1#success",
       "kor": {
         "label": "Future Stage",
         "title": "퓨처 스테이지 안내",
@@ -42,7 +42,7 @@ window.WCIF_CONTENT = {
           "트렌드세터들의 자유로운 오픈 팟캐스트",
           "2026.07.02(목) · 수성스퀘어 피오니홀"
         ],
-        "btn": "사전등록 바로가기",
+        "btn": "Zoom 링크 바로가기",
         "hide": "오늘 하루 보지 않기",
         "close": "닫기"
       },
@@ -54,7 +54,7 @@ window.WCIF_CONTENT = {
           "Free, open podcasts by trendsetters",
           "Jul 2 (Thu) · Peony Hall, Suseong Square"
         ],
-        "btn": "Pre-register",
+        "btn": "Join via Zoom",
         "hide": "Don't show again today",
         "close": "Close"
       }
