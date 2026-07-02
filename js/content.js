@@ -33,7 +33,7 @@ window.WCIF_CONTENT = {
       }
     },
     {
-      "id": "futurestage", "enabled": true, "url": "https://us02web.zoom.us/j/86364526296?pwd=4mgQmaGa2oOTuunPrRBqmyzlLlMrli.1#success",
+      "id": "futurestage", "enabled": false, "url": "https://us02web.zoom.us/j/86364526296?pwd=4mgQmaGa2oOTuunPrRBqmyzlLlMrli.1#success",
       "kor": {
         "label": "Future Stage",
         "title": "퓨처 스테이지 안내",
